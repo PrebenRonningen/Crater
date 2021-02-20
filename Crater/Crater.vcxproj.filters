@@ -33,9 +33,6 @@
     <ClCompile Include="src\Crater\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Crater\Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Crater\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -114,6 +111,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Crater\Components\Components.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CraterEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
