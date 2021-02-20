@@ -2,28 +2,39 @@
 #include "GameObject.h"
 #include "Crater/Managers/ResourceManager.h"
 #include "Renderer.h"
+#include "Components/Component.h"
 
 namespace CraterEngine
 {
-	GameObject::~GameObject() = default;
-
-	void GameObject::Update()
+	GameObject::~GameObject()
 	{
+		for ( Component* comp : m_Components )
+		{	
+			delete comp;
+			comp = nullptr;
+		}
+	};
+
+	void GameObject::Update( const float dt )
+	{
+		for ( Component* comp : m_Components )
+		{
+			comp->Update(dt);
+		}
 	}
 
 	void GameObject::Render() const
 	{
-		const auto pos = m_Transform.GetPosition();
-		Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
+		for ( Component* comp : m_Components )
+		{
+			comp->Render();
+		}
 	}
-
-	void GameObject::SetTexture(const std::string& filename)
+	void GameObject::Initialize()
 	{
-		m_Texture = ResourceManager::GetInstance().LoadTexture(filename);
-	}
-
-	void GameObject::SetPosition(float x, float y)
-	{
-		m_Transform.SetPosition(x, y, 0.0f);
+		for ( Component* comp : m_Components )
+		{
+			comp->Initialize();
+		}
 	}
 }

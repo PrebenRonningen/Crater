@@ -12,10 +12,12 @@ namespace CraterEngine
 		explicit Texture2D(SDL_Texture* texture);
 		~Texture2D();
 
+		#pragma region delete
 		Texture2D(const Texture2D&) = delete;
 		Texture2D(Texture2D&&) = delete;
 		Texture2D& operator= (const Texture2D&) = delete;
 		Texture2D& operator= (const Texture2D&&) = delete;
+		#pragma endregion
 	private:
 		SDL_Texture* m_Texture;
 	};

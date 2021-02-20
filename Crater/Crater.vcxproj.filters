@@ -18,15 +18,6 @@
     <ClCompile Include="src\CraterPCH.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Crater\Components\Font.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Crater\Components\TextObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Crater\Components\Transform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Crater\Managers\InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -34,9 +25,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Crater\Managers\SceneManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Crater\Components\Texture2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Crater\Crater.cpp">
@@ -54,18 +42,27 @@
     <ClCompile Include="src\Crater\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Crater\Components\FPSComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Crater\Objects\Texture2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Crater\Objects\Font.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Crater\Components\RenderableComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Crater\Objects\Text.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Crater\Components\TransformComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CraterPCH.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Crater\Components\Font.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Crater\Components\Transform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Crater\Components\TextObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Crater\Singleton.h">
@@ -78,9 +75,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Crater\Managers\ResourceManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Crater\Components\Texture2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Crater\SceneObject.h">
@@ -96,6 +90,30 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Crater\Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crater\Components\Component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crater\Components\FPSComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crater\Objects\Texture2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crater\Objects\Font.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crater\Components\RenderableComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crater\Objects\Text.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crater\Components\TransformComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crater\Components\Components.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

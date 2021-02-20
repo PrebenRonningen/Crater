@@ -10,18 +10,26 @@ namespace CraterEngine
 	{
 	}
 
-	Scene::~Scene() = default;
+	Scene::~Scene()
+	{
+		for ( SceneObject* obj : m_Objects )
+		{
+			delete obj;
+			obj = nullptr;
+		}
+		m_Objects.clear();
+	}
 
-	void Scene::Add(const std::shared_ptr<SceneObject>& object)
+	void Scene::Add(SceneObject* object)
 	{
 		m_Objects.push_back(object);
 	}
 
-	void Scene::Update()
+	void Scene::Update(const float dt)
 	{
 		for ( auto& object : m_Objects )
 		{
-			object->Update();
+			object->Update(dt);
 		}
 	}
 
@@ -30,6 +38,13 @@ namespace CraterEngine
 		for ( const auto& object : m_Objects )
 		{
 			object->Render();
+		}
+	}
+	void Scene::Initialize()
+	{
+		for ( auto& object : m_Objects )
+		{
+			object->Initialize();
 		}
 	}
 }

@@ -2,12 +2,12 @@
 #include "Crater.h"
 #include <chrono>
 #include <thread>
+#include "Crater/Components/Components.h"
 #include "Crater/Managers/InputManager.h"
 #include "Crater/Managers/SceneManager.h"
 #include "Renderer.h"
 #include "Crater/Managers/ResourceManager.h"
 #include <SDL.h>
-#include "Crater/Components/TextObject.h"
 #include "GameObject.h"
 #include "Scene.h"
 
@@ -38,6 +38,7 @@ namespace CraterEngine
 
 		Renderer::GetInstance().Init(m_Window);
 	}
+	
 
 	/**
 	 * Code constructing the scene world starts here
@@ -45,25 +46,57 @@ namespace CraterEngine
 	void Crater::LoadGame() const
 	{
 		auto& scene = SceneManager::GetInstance().CreateScene("Demo");
+		
+		{
+			//Background
+			GameObject* go = new GameObject();
+			go->AddComponent<TransformComponent>();
+			go->AddComponent<RenderableComponent>();
+			RenderableComponent* rendererComp = go->GetComponent<RenderableComponent>();
+			rendererComp->SetTexture("background.jpg");
+			scene.Add(go);
+		}
+		{	// Text
+			GameObject* go = new GameObject();
+			go->AddComponent<TransformComponent>();
+			TransformComponent* transformComp = go->GetComponent<TransformComponent>();
+			go->AddComponent<RenderableComponent>();		
+			RenderableComponent* renderComp = go->GetComponent<RenderableComponent>();
+			renderComp->SetTextAndColor("Programming 4 Assignment");
+			auto texInfo = renderComp->GetTexInfo().textureRect;
+			transformComp->SetPosition(320 - texInfo.w / 2.f, 150, 0);
+			scene.Add(go);
+		}
+		{ // Logo
+			GameObject* go = new GameObject();
+			go->AddComponent<TransformComponent>();
+			go->AddComponent<RenderableComponent>();
 
-		auto go = std::make_shared<GameObject>();
-		go->SetTexture("background.jpg");
-		scene.Add(go);
+			RenderableComponent* renderComp = go->GetComponent<RenderableComponent>();
+			renderComp->SetTexture("logo.png");
+			auto texInfo = renderComp->GetTexInfo().textureRect;
 
-		go = std::make_shared<GameObject>();
-		go->SetTexture("logo.png");
-		go->SetPosition(216, 180);
-		scene.Add(go);
+			TransformComponent* transformComp = go->GetComponent<TransformComponent>();
+			transformComp->SetPosition(320 - texInfo.w/2.f, 220 - texInfo.h /2.f, 0);
+			scene.Add(go);
+		}
+		{	// FPS
+			GameObject* go = new GameObject();
+			go->AddComponent<TransformComponent>();
+			TransformComponent* transformComp = go->GetComponent<TransformComponent>();
+			transformComp->SetPosition(20, 20, 0);
+			go->AddComponent<RenderableComponent>();
+			go->AddComponent<FPSComponent>();
+			scene.Add(go);
+		}
 
-		auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-		auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);
-		to->SetPosition(80, 20);
-		scene.Add(to);
+		scene.Initialize();
 	}
 
 	void Crater::Cleanup()
 	{
 		Renderer::GetInstance().Destroy();
+		SceneManager::GetInstance().Destroy();
 		SDL_DestroyWindow(m_Window);
 		m_Window = nullptr;
 		SDL_Quit();
@@ -74,7 +107,7 @@ namespace CraterEngine
 		Initialize();
 
 		// tell the resource manager where he can find the game data
-		ResourceManager::GetInstance().Init("../Data/");
+		ResourceManager::GetInstance().Init("Data/");
 
 		LoadGame();
 
@@ -83,17 +116,18 @@ namespace CraterEngine
 			auto& sceneManager = SceneManager::GetInstance();
 			auto& input = InputManager::GetInstance();
 
+			auto previousTime = high_resolution_clock::now();
 			bool doContinue = true;
 			while ( doContinue )
 			{
 				const auto currentTime = high_resolution_clock::now();
+				float deltaTime = std::chrono::duration<float>(currentTime - previousTime).count();
+				auto pretime = currentTime - previousTime;
+				previousTime = currentTime;
 
 				doContinue = input.ProcessInput();
-				sceneManager.Update();
+				sceneManager.Update(deltaTime);
 				renderer.Render();
-
-				auto sleepTime = duration_cast<duration<float>>( currentTime + milliseconds(MsPerFrame) - high_resolution_clock::now() );
-				this_thread::sleep_for(sleepTime);
 			}
 		}
 

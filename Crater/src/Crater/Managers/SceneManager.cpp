@@ -4,11 +4,11 @@
 
 namespace CraterEngine
 {
-	void SceneManager::Update()
+	void SceneManager::Update(const float dt)
 	{
 		for ( auto& scene : m_Scenes )
 		{
-			scene->Update();
+			scene->Update(dt);
 		}
 	}
 
@@ -22,8 +22,16 @@ namespace CraterEngine
 
 	Scene& SceneManager::CreateScene(const std::string& name)
 	{
-		const auto scene = std::shared_ptr<Scene>(new Scene(name));
+		Scene* scene = new Scene(name);
 		m_Scenes.push_back(scene);
 		return *scene;
+	}
+	void SceneManager::Destroy()
+	{
+		for ( auto& scene : m_Scenes )
+		{
+			delete scene;
+			scene = nullptr;
+		}
 	}
 }

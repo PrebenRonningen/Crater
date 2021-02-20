@@ -9,12 +9,12 @@ namespace CraterEngine
 	{
 	public:
 		Scene& CreateScene(const std::string& name);
-
-		void Update();
+		void Destroy();
+		void Update(const float dt);
 		void Render();
 	private:
 		friend class Singleton<SceneManager>;
 		SceneManager() = default;
-		std::vector<std::shared_ptr<Scene>> m_Scenes;
+		std::vector<Scene*> m_Scenes;
 	};
 }

@@ -2,7 +2,7 @@
 #include "Renderer.h"
 #include <SDL.h>
 #include "Crater/Managers/SceneManager.h"
-#include "Crater/Components/Texture2D.h"
+#include "Crater/Objects/Texture2D.h"
 
 namespace CraterEngine
 {

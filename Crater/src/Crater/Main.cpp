@@ -8,9 +8,13 @@
 #include "SDL.h"
 #include "Crater.h"
 
-int main(int, char* [])
+int main(int argc, char* argv[])
 {
+	(void) argc;
+	(void) argv;
+
 	CraterEngine::Crater engine;
 	engine.Run();
+	
 	return 0;
 }

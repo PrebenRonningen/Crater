@@ -101,7 +101,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>src;3rdParty\SDL2_ttf\include;3rdParty\SDL2_image\include;3rdParty\glm;3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Data;src;3rdParty\SDL2_ttf\include;3rdParty\SDL2_image\include;3rdParty\glm;3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -114,6 +114,10 @@
       <AdditionalLibraryDirectories>C:\Program Files (x86)\Visual Leak Detector\lib\Win32;3rdParty\SDL2_ttf\lib\x86;3rdParty\SDL2_image\lib\x86;3rdParty\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;xinput.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -124,7 +128,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>src;3rdParty\SDL2_ttf\include;3rdParty\SDL2_image\include;3rdParty\glm;3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Data;src;3rdParty\SDL2_ttf\include;3rdParty\SDL2_image\include;3rdParty\glm;3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -139,6 +143,10 @@
       <AdditionalLibraryDirectories>C:\Program Files (x86)\Visual Leak Detector\lib\Win32;3rdParty\SDL2_ttf\lib\x86;3rdParty\SDL2_image\lib\x86;3rdParty\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;xinput.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -147,7 +155,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>src;3rdParty\SDL2_ttf\include;3rdParty\SDL2_image\include;3rdParty\glm;3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Data;src;3rdParty\SDL2_ttf\include;3rdParty\SDL2_image\include;3rdParty\glm;3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -160,6 +168,10 @@
       <AdditionalLibraryDirectories>C:\Program Files (x86)\Visual Leak Detector\lib\Win64;3rdParty\SDL2_ttf\lib\x64;3rdParty\SDL2_image\lib\x64;3rdParty\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;xinput.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -170,7 +182,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>src;3rdParty\SDL2_ttf\include;3rdParty\SDL2_image\include;3rdParty\glm;3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Data;src;3rdParty\SDL2_ttf\include;3rdParty\SDL2_image\include;3rdParty\glm;3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -185,27 +197,37 @@
       <AdditionalLibraryDirectories>C:\Program Files (x86)\Visual Leak Detector\lib\Win64;3rdParty\SDL2_ttf\lib\x64;3rdParty\SDL2_image\lib\x64;3rdParty\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;xinput.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Crater\Components\RenderableComponent.cpp" />
+    <ClCompile Include="src\Crater\Components\FPSComponent.cpp" />
     <ClCompile Include="src\Crater\Managers\InputManager.cpp" />
     <ClCompile Include="src\Crater\Managers\ResourceManager.cpp" />
     <ClCompile Include="src\Crater\Managers\SceneManager.cpp" />
-    <ClCompile Include="src\Crater\Components\Font.cpp" />
+    <ClCompile Include="src\Crater\Objects\Font.cpp" />
     <ClCompile Include="src\Crater\Renderer.cpp" />
     <ClCompile Include="src\Crater\Scene.cpp" />
     <ClCompile Include="src\Crater\Crater.cpp" />
     <ClCompile Include="src\Crater\GameObject.cpp" />
     <ClCompile Include="src\CraterPCH.cpp" />
     <ClCompile Include="src\Crater\Main.cpp" />
-    <ClCompile Include="src\Crater\Components\TextObject.cpp" />
-    <ClCompile Include="src\Crater\Components\Transform.cpp" />
-    <ClCompile Include="src\Crater\Components\Texture2D.cpp" />
+    <ClCompile Include="src\Crater\Objects\Text.cpp" />
+    <ClCompile Include="src\Crater\Components\TransformComponent.cpp" />
+    <ClCompile Include="src\Crater\Objects\Texture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Crater\Components\Components.h" />
+    <ClInclude Include="src\Crater\Components\RenderableComponent.h" />
+    <ClInclude Include="src\Crater\Components\FPSComponent.h" />
+    <ClInclude Include="src\Crater\Components\Component.h" />
     <ClInclude Include="src\Crater\Managers\InputManager.h" />
     <ClInclude Include="src\Crater\Managers\ResourceManager.h" />
     <ClInclude Include="src\Crater\Managers\SceneManager.h" />
-    <ClInclude Include="src\Crater\Components\Font.h" />
+    <ClInclude Include="src\Crater\Objects\Font.h" />
     <ClInclude Include="src\Crater\Singleton.h" />
     <ClInclude Include="src\Crater\Renderer.h" />
     <ClInclude Include="src\Crater\Scene.h" />
@@ -213,9 +235,9 @@
     <ClInclude Include="src\Crater\GameObject.h" />
     <ClInclude Include="src\CraterPCH.h" />
     <ClInclude Include="src\Crater\SceneObject.h" />
-    <ClInclude Include="src\Crater\Components\TextObject.h" />
-    <ClInclude Include="src\Crater\Components\Transform.h" />
-    <ClInclude Include="src\Crater\Components\Texture2D.h" />
+    <ClInclude Include="src\Crater\Objects\Text.h" />
+    <ClInclude Include="src\Crater\Components\TransformComponent.h" />
+    <ClInclude Include="src\Crater\Objects\Texture2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
