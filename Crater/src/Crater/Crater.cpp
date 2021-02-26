@@ -97,6 +97,7 @@ namespace CraterEngine
 	{
 		Renderer::GetInstance().Destroy();
 		SceneManager::GetInstance().Destroy();
+		InputManager::GetInstance().Destroy();
 		SDL_DestroyWindow(m_Window);
 		m_Window = nullptr;
 		SDL_Quit();
@@ -126,6 +127,7 @@ namespace CraterEngine
 				previousTime = currentTime;
 
 				doContinue = input.ProcessInput();
+				
 				sceneManager.Update(deltaTime);
 				renderer.Render();
 			}

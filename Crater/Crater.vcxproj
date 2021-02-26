@@ -219,7 +219,12 @@
     <ClCompile Include="src\Crater\Objects\Texture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Crater\Commands\NullCommand.h" />
     <ClInclude Include="src\CraterEngine.h" />
+    <ClInclude Include="src\Crater\Commands\Command.h" />
+    <ClInclude Include="src\Crater\Commands\ReleasedTestCommand.h" />
+    <ClInclude Include="src\Crater\Commands\PressedTestCommand.h" />
+    <ClInclude Include="src\Crater\Commands\RepeatingTestCommand.h" />
     <ClInclude Include="src\Crater\Components\Components.h" />
     <ClInclude Include="src\Crater\Components\RenderableComponent.h" />
     <ClInclude Include="src\Crater\Components\FPSComponent.h" />
@@ -238,6 +243,7 @@
     <ClInclude Include="src\Crater\Objects\Text.h" />
     <ClInclude Include="src\Crater\Components\TransformComponent.h" />
     <ClInclude Include="src\Crater\Objects\Texture2D.h" />
+    <ClInclude Include="src\Crater\Controller\Xbox360Controller.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
