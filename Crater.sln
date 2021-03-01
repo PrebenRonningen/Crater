@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Crater", "Crater\Crater.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SandBox", "SandBox\SandBox.vcxproj", "{40F1FEFE-9BFE-4D99-9E5D-4BF277BB0F27}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImGui", "Crater\3rdParty\ImGui\ImGui.vcxproj", "{01F652C1-22D9-4D99-BEAF-26B808A94DEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{40F1FEFE-9BFE-4D99-9E5D-4BF277BB0F27}.Release|x64.Build.0 = Release|x64
 		{40F1FEFE-9BFE-4D99-9E5D-4BF277BB0F27}.Release|x86.ActiveCfg = Release|Win32
 		{40F1FEFE-9BFE-4D99-9E5D-4BF277BB0F27}.Release|x86.Build.0 = Release|Win32
+		{01F652C1-22D9-4D99-BEAF-26B808A94DEC}.Debug|x64.ActiveCfg = Debug|x64
+		{01F652C1-22D9-4D99-BEAF-26B808A94DEC}.Debug|x64.Build.0 = Debug|x64
+		{01F652C1-22D9-4D99-BEAF-26B808A94DEC}.Debug|x86.ActiveCfg = Debug|Win32
+		{01F652C1-22D9-4D99-BEAF-26B808A94DEC}.Debug|x86.Build.0 = Debug|Win32
+		{01F652C1-22D9-4D99-BEAF-26B808A94DEC}.Release|x64.ActiveCfg = Release|x64
+		{01F652C1-22D9-4D99-BEAF-26B808A94DEC}.Release|x64.Build.0 = Release|x64
+		{01F652C1-22D9-4D99-BEAF-26B808A94DEC}.Release|x86.ActiveCfg = Release|Win32
+		{01F652C1-22D9-4D99-BEAF-26B808A94DEC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

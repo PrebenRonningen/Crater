@@ -2,7 +2,10 @@
 #include "InputManager.h"
 #include "Crater/Controller/Xbox360Controller.h"
 #include "Crater/Commands/Command.h"
+#include <cassert>
+#include <algorithm>
 #include <SDL.h>
+
 
 namespace CraterEngine
 {
@@ -22,6 +25,16 @@ namespace CraterEngine
 			{
 				delete com.second;
 				com.second = nullptr;
+			}
+		}
+		m_Keys.clear();
+
+		for ( auto& c : m_Controllers )
+		{
+			if ( c )
+			{
+				delete c;
+				c = nullptr;
 			}
 		}
 	}
@@ -60,7 +73,8 @@ namespace CraterEngine
 		SDL_Event e;
 		while ( SDL_PollEvent(&e) )
 		{
-			if ( e.type == SDL_QUIT )
+			ImGui_ImplSDL2_ProcessEvent(&e);
+			if ( e.type == SDL_QUIT || e.window.event == SDL_WINDOWEVENT_CLOSE )
 			{
 				return false;
 			}
@@ -98,8 +112,8 @@ namespace CraterEngine
 		{
 			if ( key & keyInfo )
 			{
-				auto command = m_Keys[std::tuple(controllerId, ControllerButton(keysChecked), buttonState)];
-				if ( command != nullptr ) command->Execute();
+				auto command = m_Keys.find(std::tuple(controllerId, ControllerButton(keysChecked), buttonState));
+				if ( command != m_Keys.end() ) m_Keys[command->first]->Execute();
 			}
 			++keysChecked;
 			key = key << 1;
@@ -108,11 +122,32 @@ namespace CraterEngine
 
 	bool InputManager::AssignCommand(const std::tuple<unsigned int, ControllerButton, ButtonState>& commandKey, Command* command)
 	{
-		if ( m_Keys[commandKey] == nullptr )
+		auto existingCommand = m_Keys.find(commandKey);
+		if ( existingCommand == m_Keys.end())
 		{
 			m_Keys[commandKey] = command;
 			return true;
 		}
+		else if ( typeid( *existingCommand->second ) != typeid( *command ) )
+		{
+			delete m_Keys[commandKey];
+			m_Keys[commandKey] = command;
+			return true;
+		}
+
+			try
+			{
+				if(typeid( *existingCommand->second ) == typeid( *command ) )
+					throw std::runtime_error("Command already set: ");
+			}
+			catch ( const std::runtime_error& e )
+			{
+				std::string what = typeid( *command ).name();
+				what = what.substr(what.find_last_of(':')+1, what.size() - what.find_last_of(':'));
+				std::cout << e.what() << what << " already set to key [User(" << std::get<0>(commandKey) << "), Button(" << (int)std::get<1>(commandKey) << "), State(" << (int)std::get<2>(commandKey) <<")]" << std::endl;
+			}
+
+		delete command;
 		return false;
 	}
 }

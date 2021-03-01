@@ -1,5 +1,5 @@
 #pragma once
-#include "Crater/Singleton.h"
+#include "Singleton.h"
 
 namespace CraterEngine
 

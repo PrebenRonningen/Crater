@@ -1,6 +1,6 @@
 #pragma once
 #include <XInput.h>
-#include "Crater/Singleton.h"
+#include "Singleton.h"
 #include <map>
 #include <tuple>
 

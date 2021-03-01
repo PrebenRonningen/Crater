@@ -22,6 +22,7 @@ namespace CraterEngine
 
 	void Renderer::Init(SDL_Window* window)
 	{
+		m_pWindow = window;
 		m_Renderer = SDL_CreateRenderer(window, GetOpenGLDriverIndex(), SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 		if ( m_Renderer == nullptr )
 		{
@@ -33,7 +34,19 @@ namespace CraterEngine
 	{
 		SDL_RenderClear(m_Renderer);
 
+		ImGui_ImplOpenGL2_NewFrame();
+		ImGui_ImplSDL2_NewFrame(m_pWindow);
+		ImGui::NewFrame();
+
 		SceneManager::GetInstance().Render();
+
+	}
+
+	void Renderer::Present() const
+	{
+		// Rendering
+		ImGui::Render();
+		ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
 
 		SDL_RenderPresent(m_Renderer);
 	}

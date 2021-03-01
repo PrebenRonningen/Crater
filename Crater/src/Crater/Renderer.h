@@ -1,5 +1,5 @@
 #pragma once
-#include "Crater/Singleton.h"
+#include "Crater/Managers/Singleton.h"
 
 struct SDL_Window;
 struct SDL_Renderer;
@@ -15,6 +15,7 @@ namespace CraterEngine
 	public:
 		void Init(SDL_Window* window);
 		void Render() const;
+		void Present() const;
 		void Destroy();
 
 		void RenderTexture(const Texture2D& texture, float x, float y) const;
@@ -26,5 +27,6 @@ namespace CraterEngine
 		}
 	private:
 		SDL_Renderer* m_Renderer{};
+		SDL_Window* m_pWindow;
 	};
 }
