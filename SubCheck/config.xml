@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" >
+	<SubmissionRegex>[1,2,3]DAE[0,1,2]\d_Programming4_[0,1]\d_\S+_\S+\.zip</SubmissionRegex>
+	<SolutionMajorVersionNumber>16</SolutionMajorVersionNumber>
+	<!--<DevenvPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\devenv.exe</DevenvPath>-->
+	<!--<OpenVSAfterReport>true</OpenVSAfterReport>-->
+</Config>
