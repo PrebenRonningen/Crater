@@ -21,4 +21,3 @@ void HealthObserver::OnNotify(const CraterEngine::GameObject& object, const Crat
 			break;
 	}
 }
-

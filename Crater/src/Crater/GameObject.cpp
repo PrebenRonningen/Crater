@@ -4,6 +4,7 @@
 #include "Renderer.h"
 #include "Components/Component.h"
 #include "Crater/Events/Event.h"
+#include "Crater/Observer/Subject.h"
 
 namespace CraterEngine
 {

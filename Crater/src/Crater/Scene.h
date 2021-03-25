@@ -5,11 +5,11 @@ namespace CraterEngine
 {	
 	class Observer;
 	class Subject;
-	class SceneObject;
+	class GameObject;
 	class Scene
 	{
 	public:
-		void Add(SceneObject* object);
+		void Add(GameObject* object);
 		void AddObserver(Observer* observer);
 
 		void Update(const float dt);
@@ -26,7 +26,7 @@ namespace CraterEngine
 		explicit Scene(const std::string& name);
 
 		std::string m_Name;
-		std::vector<SceneObject*> m_Objects{};
+		std::vector<GameObject*> m_Objects{};
 		Subject* m_pSubject = nullptr;
 
 		static unsigned int m_IdCounter;

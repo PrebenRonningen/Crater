@@ -24,5 +24,3 @@ void HealthDisplayComponent::Update(const float)
 		m_PreviousHealth = currentHealth;
 	}
 }
-
-

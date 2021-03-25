@@ -1,11 +1,12 @@
 #pragma once
 #pragma warning(push)
 #pragma warning (disable:4201)
-#include <glm/vec3.hpp>
+#include <glm/glm.hpp>
 #pragma warning(pop)
-#include "Component.h"
-#include "Crater/GameObject.h"
 
+#include "Component.h"
+
+class GameObject;
 namespace CraterEngine
 {
 	class TransformComponent final : public Component

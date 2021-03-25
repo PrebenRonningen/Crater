@@ -9,6 +9,10 @@
 #include "Components/HealthDisplayComponent.h"
 #include "Components/ScoreDisplayComponent.h"
 
+
+//
+
+
 class Sandbox : public CraterEngine::Crater
 {
 public:
@@ -19,17 +23,17 @@ public:
 
 	virtual void LoadGame() const
 	{
-		using namespace CraterEngine;
 		//InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::ButtonA, ButtonState::ButtonDown), new PressedTestCommand);
 		//InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::ButtonX, ButtonState::ButtonUp), new ReleasedTestCommand);
 		//InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::DPadRigh, ButtonState::ButtonRepeat), new RepeatingTestCommand);
-
-
+		using namespace CraterEngine;
 		Scene& scene = SceneManager::GetInstance().CreateScene("Sandbox Demo");
-		
+
+
 		{
+			using namespace CraterEngine;
 			//Background
-			GameObject* go = new GameObject();
+			CraterEngine::GameObject* go = new CraterEngine::GameObject;
 			go->AddComponent<TransformComponent>();
 			go->AddComponent<RenderableComponent>();
 			RenderableComponent* rendererComp = go->GetComponent<RenderableComponent>();
@@ -58,7 +62,8 @@ public:
 		//	scene.Add(go);
 		//}
 		{	// FPS
-			GameObject* go = new GameObject();
+
+			CraterEngine::GameObject* go = new CraterEngine::GameObject;
 			go->AddComponent<TransformComponent>();
 			TransformComponent* transformComp = go->GetComponent<TransformComponent>();
 			transformComp->SetPosition(20, 20, 0);
@@ -68,7 +73,7 @@ public:
 		}
 
 		{	// Controls
-			GameObject* controlInfo = new GameObject();
+			CraterEngine::GameObject* controlInfo = new CraterEngine::GameObject();
 			controlInfo->AddComponent<TransformComponent>();
 			TransformComponent* transformComp = controlInfo->GetComponent<TransformComponent>();
 			controlInfo->AddComponent<RenderableComponent>();
@@ -80,7 +85,7 @@ public:
 		}
 
 		{
-			GameObject* qbert = new GameObject();
+			CraterEngine::GameObject* qbert = new CraterEngine::GameObject();
 			qbert->AddComponent<TransformComponent>(glm::vec3{10, 110, 0});
 			qbert->AddComponent<RenderableComponent>();
 			RenderableComponent* pRenderComp = qbert->GetComponent<RenderableComponent>();
@@ -95,9 +100,9 @@ public:
 			scene.AddObserver(new HealthObserver);
 			scene.Add(qbert);
 
-		 // DisplayPlayer1Lives
+			 // DisplayPlayer1Lives
 			
-			GameObject* pPlayerOneLives = new GameObject();
+			CraterEngine::GameObject* pPlayerOneLives = new CraterEngine::GameObject();
 			pPlayerOneLives->AddComponent<TransformComponent>(glm::vec3(50, 105, 0));
 			pPlayerOneLives->AddComponent<RenderableComponent>();
 
@@ -113,7 +118,7 @@ public:
 			InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::DPadUp, ButtonState::ButtonDown), new ScoreCommand(qbert, CraterEngine::EventType::CaughtSam));
 
 			//	DisplayScore
-			GameObject* pPlayerOneScore = new GameObject();
+			CraterEngine::GameObject* pPlayerOneScore = new CraterEngine::GameObject();
 			pPlayerOneScore->AddComponent<TransformComponent>(glm::vec3(50, 150, 0));
 			pPlayerOneScore->AddComponent<RenderableComponent>();
 
@@ -125,7 +130,7 @@ public:
 		}
 
 		{	// Player 2
-			GameObject* qbert = new GameObject();
+			CraterEngine::GameObject* qbert = new CraterEngine::GameObject();
 			qbert->AddComponent<TransformComponent>(glm::vec3{ 250, 10, 0 });
 			qbert->AddComponent<RenderableComponent>();
 			RenderableComponent* pRenderComp = qbert->GetComponent<RenderableComponent>();
@@ -141,7 +146,7 @@ public:
 
 			// DisplayPlayer2Lives
 
-			GameObject* pPlayerTwoLives = new GameObject();
+			CraterEngine::GameObject* pPlayerTwoLives = new CraterEngine::GameObject();
 			pPlayerTwoLives->AddComponent<TransformComponent>(glm::vec3(320, 5, 0));
 			pPlayerTwoLives->AddComponent<RenderableComponent>();
 
@@ -155,9 +160,9 @@ public:
 			InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::ButtonB, ButtonState::ButtonDown), new ScoreCommand(qbert, CraterEngine::EventType::DefetedCoilyWithFlyingDisc));
 			InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::ButtonX, ButtonState::ButtonUp), new ScoreCommand(qbert, CraterEngine::EventType::DiscRemaining));
 			InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::ButtonY, ButtonState::ButtonDown), new ScoreCommand(qbert, CraterEngine::EventType::CaughtSam));
-
+ 
 			//	DisplayScore
-			GameObject* pPlayerTwoScore = new GameObject();
+			CraterEngine::GameObject* pPlayerTwoScore = new CraterEngine::GameObject();
 			pPlayerTwoScore->AddComponent<TransformComponent>(glm::vec3(320, 50, 0));
 			pPlayerTwoScore->AddComponent<RenderableComponent>();
 
@@ -167,7 +172,6 @@ public:
 
 			scene.Add(pPlayerTwoScore);
 		}
-
 
 		scene.Initialize();
 	}

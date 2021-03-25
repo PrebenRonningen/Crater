@@ -1,21 +1,22 @@
 #pragma once
 #include <typeinfo>
 #include "Crater/Components/TransformComponent.h"
-#include "SceneObject.h"
 #include "Components/Component.h"
+#include "Events/Event.h"
+class Subject;
 
 namespace CraterEngine
 {
 	class Subject;
 	class Texture2D;
-	class GameObject final : public SceneObject
+	class GameObject final
 	{
 	public:
 		GameObject(){};
-		virtual ~GameObject();
+		~GameObject();
 
-		virtual void Update(const float dt) override;
-		virtual void Render() const override;
+		void Update(const float dt);
+		void Render() const;
 		void Initialize();
 
 	#pragma region deleted
@@ -28,7 +29,7 @@ namespace CraterEngine
 		template <class T, typename... Args>
 		void AddComponent(Args... args)
 		{
-				m_Components.push_back(new T{ this, args... });
+			m_Components.push_back(new T{ this, args... });
 		}
 
 		template <class T>
@@ -43,10 +44,28 @@ namespace CraterEngine
 			return nullptr;
 		}
 
-		void Notify(const GameObject& object, const EventType& event) const;
+		template <typename T>
+		bool HasComponent()
+		{
+			for ( auto* component : m_Components )
+			{
+				if ( typeid( *component ) == typeid( T ) ) return true;
+			}
+			return false;
+		}
+
+		void Notify(const GameObject& object, const CraterEngine::EventType& event) const;
+		
+		void SetSubject(Subject* subject)
+		{
+			if ( m_pSubject == nullptr )
+				m_pSubject = subject;
+		};
 
 	private:
 		std::vector<Component*> m_Components{};
+		// turn into component
+		Subject* m_pSubject = nullptr;
 
 	};
 }

@@ -15,7 +15,7 @@ namespace CraterEngine
 
 	Scene::~Scene()
 	{
-		for ( SceneObject* obj : m_Objects )
+		for ( GameObject* obj : m_Objects )
 		{
 			delete obj;
 			obj = nullptr;
@@ -29,7 +29,7 @@ namespace CraterEngine
 		}
 	}
 
-	void Scene::Add(SceneObject* object)
+	void Scene::Add(GameObject* object)
 	{
 		object->SetSubject(m_pSubject);
 		m_Objects.push_back(object);

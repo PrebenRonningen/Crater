@@ -1,5 +1,6 @@
 #include "CraterPCH.h"
 #include "TransformComponent.h"
+#include "Crater/GameObject.h"
 
 namespace CraterEngine
 {
