@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Crater", "Crater\Crater.vcxproj", "{A93F2E9A-B917-4B75-9A42-D22B286B3754}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SandBox", "SandBox\SandBox.vcxproj", "{40F1FEFE-9BFE-4D99-9E5D-4BF277BB0F27}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Crater", "Crater\Crater.vcxproj", "{A93F2E9A-B917-4B75-9A42-D22B286B3754}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImGui", "Crater\3rdParty\ImGui\ImGui.vcxproj", "{01F652C1-22D9-4D99-BEAF-26B808A94DEC}"
 EndProject

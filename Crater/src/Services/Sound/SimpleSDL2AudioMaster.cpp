@@ -44,7 +44,12 @@ namespace CraterEngine
 		return id;
 	}
 
-	void SimpleSDL2AudioMaster::Play(const size_t id, const float volume)
+	void SimpleSDL2AudioMaster::PlayMusic(const std::string& filePath, const float volume)
+	{
+		playMusic(filePath.c_str(), std::clamp(int(volume), 0, SDL_MIX_MAXVOLUME));
+	}
+
+	void SimpleSDL2AudioMaster::PlaySound(const size_t id, const float volume)
 	{
 		std::lock_guard<std::mutex> lock{m_Mutex};
 		if ( m_Sounds.find(id) != m_Sounds.end() )
@@ -54,14 +59,14 @@ namespace CraterEngine
 		}
 	}
 
-	void SimpleSDL2AudioMaster::Play(const std::string& filePath, const float volume)
+	void SimpleSDL2AudioMaster::PlaySound(const std::string& filePath, const float volume)
 	{
 		std::hash<std::string> hash{};
 		size_t id = hash(filePath);
 
 		if ( m_Sounds.find(id) != m_Sounds.end() )
 		{
-			Play(id, volume);
+			PlaySound(id, volume);
 		}
 	}
 
@@ -90,7 +95,7 @@ namespace CraterEngine
 	void SimpleSDL2AudioMaster::ToggleMuted()
 	{
 		m_IsMuted = !m_IsMuted;
-		(m_IsMuted ) ? Pause() : UnPause();
+	//	(m_IsMuted ) ? Pause() : UnPause();
 	}
 
 	void SimpleSDL2AudioMaster::Pause()

@@ -14,12 +14,11 @@ void ScoreObserver::OnNotify(const CraterEngine::GameObject& pObject, const Crat
 	{
 		case CraterEngine::EventType::ColorChange:
 				pScoreComponent->AddToScore(25);
-				ServiceLocator::GetSoundService().Play("../Crater/3rdParty/Simple-SDL2-Audio-master/sounds/door2.wav", 50);
+				ServiceLocator::GetSoundService().PlaySound("../Crater/3rdParty/Simple-SDL2-Audio-master/sounds/door2.wav", 50);
 			break;
 		case CraterEngine::EventType::DefetedCoilyWithFlyingDisc:
 				pScoreComponent->AddToScore(500);
 				ServiceLocator::GetSoundService().Pause();
-
 			break;
 		case CraterEngine::EventType::DiscRemaining:
 				pScoreComponent->AddToScore(50);

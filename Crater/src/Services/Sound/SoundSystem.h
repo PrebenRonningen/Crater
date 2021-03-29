@@ -20,8 +20,10 @@ public:
 	virtual void Pause() = 0;
 	virtual void UnPause() = 0;
 	
-	virtual void Play(const size_t id, const float volume) = 0;
-	virtual void Play(const std::string& filePath, const float volume) = 0;
+
+	virtual void PlaySound(const size_t id, const float volume) = 0;
+	virtual void PlaySound(const std::string& filePath, const float volume) = 0;
+	virtual void PlayMusic(const std::string& filePath, const float volume) = 0;
 private:
 };
 

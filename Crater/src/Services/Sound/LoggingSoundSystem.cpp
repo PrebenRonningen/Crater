@@ -18,22 +18,27 @@ namespace CraterEngine
 	}
 	size_t LoggingSoundSystem::AddAudio(const std::string& filePath)
 	{
-		std::cout << "Atempting to add audio: " << filePath << std::endl;
+		std::cout << "Atempting to add sound: " << filePath << std::endl;
 			return m_pSoundSystem->AddAudio(filePath);
 	};
-	void LoggingSoundSystem::Play(const size_t id, const float volume)
+	void LoggingSoundSystem::PlaySound(const size_t id, const float volume)
 	{
-		std::cout << "Adding play audio to queue, ID: " << id << ", volume: " << volume << std::endl;
-		m_pSoundSystem->Play(id, volume);
+		std::cout << "Adding play sound to queue, ID: " << id << ", volume: " << volume << std::endl;
+		m_pSoundSystem->PlaySound(id, volume);
 	}
-	void LoggingSoundSystem::Play(const std::string& filePath, const float volume)
+	void LoggingSoundSystem::PlaySound(const std::string& filePath, const float volume)
 	{
-		std::cout << "Adding play audio to queue, Audio File Path: " << filePath << ", volume: " << volume << std::endl;
-		m_pSoundSystem->Play(filePath, volume);
+		std::cout << "Adding play sound to queue, Audio File Path: " << filePath << ", volume: " << volume << std::endl;
+		m_pSoundSystem->PlaySound(filePath, volume);
+	}
+	void LoggingSoundSystem::PlayMusic(const std::string& filePath, const float volume)
+	{
+		std::cout << "Adding play music to queue, Audio File Path: " << filePath << ", volume: " << volume << std::endl;
+		m_pSoundSystem->PlayMusic(filePath, volume);
 	}
 	void LoggingSoundSystem::ToggleMuted()
 	{
-		std::cout << "Toggle Mute" << std::endl;
+		std::cout << "Toggle Mute Sounds" << std::endl;
 		m_pSoundSystem->ToggleMuted();
 	}
 	void LoggingSoundSystem::Pause()

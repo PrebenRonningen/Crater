@@ -22,8 +22,9 @@ namespace CraterEngine
 		virtual void UnPause() override;
 
 		virtual size_t AddAudio(const std::string& filePath) override;
-		virtual void Play(const size_t id, const float volume) override;
-		virtual void Play(const std::string& filePath, const float volume) override;
+		virtual void PlaySound(const size_t id, const float volume) override;
+		virtual void PlaySound(const std::string& filePath, const float volume) override;
+		virtual void PlayMusic(const std::string& filePath, const float volume);
 
 	private:
 		SoundSystem* m_pSoundSystem;

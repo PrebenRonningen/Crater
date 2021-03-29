@@ -19,6 +19,7 @@ public:
 	virtual void UnPause() override{};
 
 	virtual size_t AddAudio(const std::string& ) override{return size_t(-1);};
-	virtual void Play(const size_t, const float) override{};
-	virtual void Play(const std::string&, const float) override{};
+	virtual void PlaySound(const size_t, const float) override{};
+	virtual void PlaySound(const std::string&, const float) override{};
+	virtual void PlayMusic(const std::string& , const float ){};
 };
