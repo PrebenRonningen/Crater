@@ -10,6 +10,9 @@
 #include "Components/ScoreDisplayComponent.h"
 
 
+
+#include "src/audio.h"
+#include "src/audio.c"
 //
 
 
@@ -186,7 +189,7 @@ public:
 int main(int , char* [])
 {
 	Sandbox* eng = new Sandbox();
-	
+
 	eng->Run();
 	if ( eng )
 	{

@@ -73,7 +73,7 @@ namespace CraterEngine
 		SDL_Event e;
 		while ( SDL_PollEvent(&e) )
 		{
-			ImGui_ImplSDL2_ProcessEvent(&e);
+			//ImGui_ImplSDL2_ProcessEvent(&e);
 			if ( e.type == SDL_QUIT || e.window.event == SDL_WINDOWEVENT_CLOSE )
 			{
 				return false;

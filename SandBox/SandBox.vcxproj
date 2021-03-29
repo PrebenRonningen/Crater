@@ -72,23 +72,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)</OutDir>
-    <IntDir>$(SolutionDir)bin-int\$(ProjectName)\$(Platform)\$(Configuration)</IntDir>
+    <OutDir>$(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)</OutDir>
-    <IntDir>$(SolutionDir)bin-int\$(ProjectName)\$(Platform)\$(Configuration)</IntDir>
+    <OutDir>$(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)</OutDir>
-    <IntDir>$(SolutionDir)bin-int\$(ProjectName)\$(Platform)\$(Configuration)</IntDir>
+    <OutDir>$(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)</OutDir>
-    <IntDir>$(SolutionDir)bin-int\$(ProjectName)\$(Platform)\$(Configuration)</IntDir>
+    <OutDir>$(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -96,7 +96,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crater\Data;$(SolutionDir)Crater\src;$(SolutionDir)Crater\3rdParty\SDL2_ttf\include;$(SolutionDir)Crater\3rdParty\SDL2_image\include;$(SolutionDir)Crater\3rdParty\glm;$(SolutionDir)Crater\3rdParty\SDL2\include;$(SolutionDir)Crater\3rdParty\ImGui;C:\Program Files (x86)\Visual Leak Detector\include;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crater\Data;$(SolutionDir)Crater\src;$(SolutionDir)Crater\3rdParty\SDL2_ttf\include;$(SolutionDir)Crater\3rdParty\SDL2_image\include;$(SolutionDir)Crater\3rdParty\glm;$(SolutionDir)Crater\3rdParty\SDL2\include;$(SolutionDir)Crater\3rdParty\ImGui;$(SolutionDir)Crater\3rdParty\Simple-SDL2-Audio-master;$(ProjectDir)src;C:\Program Files (x86)\Visual Leak Detector\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -110,9 +110,9 @@
       <AdditionalDependencies>opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)Crater\3rdParty\SDL2\lib\x86\*.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)Crater\3rdParty\SDL2_image\lib\x86\*.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y
+      <Command>xcopy "$(SolutionDir)Crater\3rdParty\SDL2\lib\$(PlatformTarget)\*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)Crater\3rdParty\SDL2_image\lib\$(PlatformTarget)\*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(OutputPath)" /R /Y
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -124,7 +124,7 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R 
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crater\Data;$(SolutionDir)Crater\src;$(SolutionDir)Crater\3rdParty\SDL2_ttf\include;$(SolutionDir)Crater\3rdParty\SDL2_image\include;$(SolutionDir)Crater\3rdParty\glm;$(SolutionDir)Crater\3rdParty\SDL2\include;$(SolutionDir)Crater\3rdParty\ImGui;C:\Program Files (x86)\Visual Leak Detector\include;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crater\Data;$(SolutionDir)Crater\src;$(SolutionDir)Crater\3rdParty\SDL2_ttf\include;$(SolutionDir)Crater\3rdParty\SDL2_image\include;$(SolutionDir)Crater\3rdParty\glm;$(SolutionDir)Crater\3rdParty\SDL2\include;$(SolutionDir)Crater\3rdParty\ImGui;$(SolutionDir)Crater\3rdParty\Simple-SDL2-Audio-master;$(ProjectDir)src;C:\Program Files (x86)\Visual Leak Detector\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -140,9 +140,9 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R 
       <AdditionalDependencies>opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)Crater\3rdParty\SDL2\lib\x86\*.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)Crater\3rdParty\SDL2_image\lib\x86\*.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y
+      <Command>xcopy "$(SolutionDir)Crater\3rdParty\SDL2\lib\$(PlatformTarget)\*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)Crater\3rdParty\SDL2_image\lib\$(PlatformTarget)\*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(OutputPath)" /R /Y
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -152,7 +152,7 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R 
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crater\Data;$(SolutionDir)Crater\src;$(SolutionDir)Crater\3rdParty\SDL2_ttf\include;$(SolutionDir)Crater\3rdParty\SDL2_image\include;$(SolutionDir)Crater\3rdParty\glm;$(SolutionDir)Crater\3rdParty\SDL2\include;$(SolutionDir)Crater\3rdParty\ImGui;C:\Program Files (x86)\Visual Leak Detector\include;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crater\Data;$(SolutionDir)Crater\src;$(SolutionDir)Crater\3rdParty\SDL2_ttf\include;$(SolutionDir)Crater\3rdParty\SDL2_image\include;$(SolutionDir)Crater\3rdParty\glm;$(SolutionDir)Crater\3rdParty\SDL2\include;$(SolutionDir)Crater\3rdParty\ImGui;$(SolutionDir)Crater\3rdParty\Simple-SDL2-Audio-master;$(ProjectDir)src;C:\Program Files (x86)\Visual Leak Detector\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -167,9 +167,9 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R 
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)Crater\3rdParty\SDL2\lib\x64\*.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)Crater\3rdParty\SDL2_image\lib\x64\*.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y
+      <Command>xcopy "$(SolutionDir)Crater\3rdParty\SDL2\lib\$(PlatformTarget)\*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)Crater\3rdParty\SDL2_image\lib\$(PlatformTarget)\*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(OutputPath)" /R /Y
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -181,7 +181,7 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R 
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crater\Data;$(SolutionDir)Crater\src;$(SolutionDir)Crater\3rdParty\SDL2_ttf\include;$(SolutionDir)Crater\3rdParty\SDL2_image\include;$(SolutionDir)Crater\3rdParty\glm;$(SolutionDir)Crater\3rdParty\SDL2\include;$(SolutionDir)Crater\3rdParty\ImGui;C:\Program Files (x86)\Visual Leak Detector\include;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crater\Data;$(SolutionDir)Crater\src;$(SolutionDir)Crater\3rdParty\SDL2_ttf\include;$(SolutionDir)Crater\3rdParty\SDL2_image\include;$(SolutionDir)Crater\3rdParty\glm;$(SolutionDir)Crater\3rdParty\SDL2\include;$(SolutionDir)Crater\3rdParty\ImGui;$(SolutionDir)Crater\3rdParty\Simple-SDL2-Audio-master;$(ProjectDir)src;C:\Program Files (x86)\Visual Leak Detector\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -198,9 +198,9 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R 
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)Crater\3rdParty\SDL2\lib\x64\*.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)Crater\3rdParty\SDL2_image\lib\x64\*.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y
+      <Command>xcopy "$(SolutionDir)Crater\3rdParty\SDL2\lib\$(PlatformTarget)\*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)Crater\3rdParty\SDL2_image\lib\$(PlatformTarget)\*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(OutputPath)" /R /Y
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

@@ -34,19 +34,21 @@ namespace CraterEngine
 	{
 		SDL_RenderClear(m_Renderer);
 
-		ImGui_ImplOpenGL2_NewFrame();
-		ImGui_ImplSDL2_NewFrame(m_pWindow);
-		ImGui::NewFrame();
+		//ImGui_ImplOpenGL2_NewFrame();
+		//ImGui_ImplSDL2_NewFrame(m_pWindow);
+		//ImGui::NewFrame();
 
 		SceneManager::GetInstance().Render();
+
+		SDL_RenderPresent(m_Renderer);
 
 	}
 
 	void Renderer::Present() const
 	{
 		// Rendering
-		ImGui::Render();
-		ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
+	//	ImGui::Render();
+	//	ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
 
 		SDL_RenderPresent(m_Renderer);
 	}

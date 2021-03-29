@@ -16,7 +16,6 @@ public:
 #pragma endregion
 
 	virtual void Update(const float dt) override;
-	//virtual void Render() const override;
 	virtual bool Initialize() override{ return true; };
 
 private:
