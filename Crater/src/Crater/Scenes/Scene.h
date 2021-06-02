@@ -18,7 +18,7 @@ namespace CraterEngine
 		Scene& operator=(Scene&& other) = delete;
 		const std::string& GetName() const{ return m_Name; }
 
-		void Add(GameObject* object);
+		void AddGameObject(GameObject* object);
 		void AddObserver(Observer* observer);
 
 		virtual void Update(const float dt) = 0;

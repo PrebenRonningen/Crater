@@ -35,7 +35,7 @@ namespace CraterEngine
 			go->AddComponent<RenderableComponent>();
 			RenderableComponent* rendererComp = go->GetComponent<RenderableComponent>();
 			rendererComp->SetTexture("background.jpg");
-			Add(go);
+			AddGameObject(go);
 		}
 		{	// Text
 			GameObject* go = new GameObject();
@@ -46,7 +46,7 @@ namespace CraterEngine
 			renderComp->SetTextAndColor("Programming 4 Assignment");
 			auto texInfo = renderComp->GetTexInfo().textureRect;
 			transformComp->SetPosition(320 - texInfo.w / 2.f, 150, 0);
-			Add(go);
+			AddGameObject(go);
 		}
 		{ // Logo
 			GameObject* go = new GameObject();
@@ -59,7 +59,7 @@ namespace CraterEngine
 
 			TransformComponent* transformComp = go->GetComponent<TransformComponent>();
 			transformComp->SetPosition(320 - texInfo.w / 2.f, 220 - texInfo.h / 2.f, 0);
-			Add(go);
+			AddGameObject(go);
 		}
 		{	// FPS
 			GameObject* go = new GameObject();
@@ -68,7 +68,7 @@ namespace CraterEngine
 			transformComp->SetPosition(20, 20, 0);
 			go->AddComponent<RenderableComponent>();
 			go->AddComponent<FPSComponent>();
-			Add(go);
+			AddGameObject(go);
 		}
 
 		for ( auto pO : m_Objects )

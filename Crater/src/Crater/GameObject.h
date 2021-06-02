@@ -3,7 +3,6 @@
 #include "Crater/Components/TransformComponent.h"
 #include "Components/Component.h"
 #include "Events/Event.h"
-class Subject;
 
 namespace CraterEngine
 {

@@ -5,6 +5,7 @@
 
 namespace CraterEngine
 {
+	//TODO: Spliti into SpriteRenderComponent & TextRenderComponent
 	RenderableComponent::RenderableComponent(const GameObject* parent, const std::string filePath)
 		: Component(parent)
 		, m_pText{nullptr}
@@ -68,6 +69,7 @@ namespace CraterEngine
 		}
 		m_pTexture2D = ResourceManager::GetInstance().LoadTexture(filePath);
 	}
+
 	void RenderableComponent::SetTextAndColor(const std::string& text, const SDL_Color& color)
 	{
 		if ( !m_pText )

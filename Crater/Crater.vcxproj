@@ -219,6 +219,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Crater\Components\SpriteRenderComponent.cpp" />
     <ClCompile Include="src\Crater\Scenes\DefaultScene.cpp" />
     <ClCompile Include="src\Services\Sound\LoggingSoundSystem.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
@@ -341,8 +342,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\Crater\Components\TextRenderComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Crater\Components\SpriteRenderComponent.h" />
     <ClInclude Include="src\Crater\Scenes\DefaultScene.h" />
     <ClInclude Include="src\Services\Sound\LoggingSoundSystem.h" />
     <ClInclude Include="src\Services\Sound\SimpleSDL2AudioMaster.h" />
@@ -381,6 +384,7 @@
     <ClInclude Include="src\Crater\Events\Event.h" />
     <ClInclude Include="src\Crater\Observer\Observer.h" />
     <ClInclude Include="src\Crater\Observer\Subject.h" />
+    <ClInclude Include="src\Crater\Components\TextRenderComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="3rdParty\ImGui\ImGui.vcxproj">

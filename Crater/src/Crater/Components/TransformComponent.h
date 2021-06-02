@@ -6,9 +6,9 @@
 
 #include "Component.h"
 
-class GameObject;
 namespace CraterEngine
 {
+	class GameObject;
 	class TransformComponent final : public Component
 	{
 	public:

@@ -20,7 +20,7 @@
 #include <stdio.h>
 #include <iostream> // std::cout
 #include <sstream> // stringstream
-
+#include <string>
 #include <vector>
 
 #define WIN32_LEAN_AND_MEAN

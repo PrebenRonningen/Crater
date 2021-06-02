@@ -218,6 +218,10 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(Ou
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="LevelComponent.cpp" />
+    <ClCompile Include="src\Scenes\QbertLevelOneScene.cpp" />
+    <ClCompile Include="src\App\Main.cpp" />
+    <ClCompile Include="src\App\QbertApplication.cpp" />
     <ClCompile Include="src\Scenes\SandBoxScene.cpp" />
     <ClCompile Include="src\SandBoxPCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -235,6 +239,10 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(Ou
     <ClCompile Include="src\App\Sandbox.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="LevelComponent.h" />
+    <ClInclude Include="src\Scenes\QbertLevelOneScene.h" />
+    <ClInclude Include="src\App\QbertApplication.h" />
+    <ClInclude Include="src\App\SandBox.h" />
     <ClInclude Include="src\Scenes\SandBoxScene.h" />
     <ClInclude Include="src\Commands\ScoreCommand.h" />
     <ClInclude Include="src\Components\HealthDisplayComponent.h" />

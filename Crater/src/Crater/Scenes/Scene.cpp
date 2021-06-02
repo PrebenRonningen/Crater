@@ -28,7 +28,7 @@ namespace CraterEngine
 		}
 	}
 
-	void Scene::Add(GameObject* object)
+	void Scene::AddGameObject(GameObject* object)
 	{
 		if ( object->HasComponent<RenderableComponent>() )
 		{
