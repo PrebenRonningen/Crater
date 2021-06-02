@@ -36,7 +36,7 @@
     <ClCompile Include="src\Crater\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Crater\Scene.cpp">
+    <ClCompile Include="src\Crater\Scenes\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Crater\Components\FPSComponent.cpp">
@@ -78,6 +78,9 @@
     <ClCompile Include="src\Services\Sound\LoggingSoundSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Crater\Scenes\DefaultScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CraterPCH.h">
@@ -104,7 +107,7 @@
     <ClInclude Include="src\Crater\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Crater\Scene.h">
+    <ClInclude Include="src\Crater\Scenes\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Crater\Components\Component.h">
@@ -189,6 +192,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Services\Sound\LoggingSoundSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crater\Scenes\DefaultScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

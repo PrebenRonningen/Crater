@@ -1,14 +1,13 @@
 #include "CraterPCH.h"
 #include "Scene.h"
-#include "GameObject.h"
-#include "Observer/Observer.h"
+#include "../GameObject.h"
+#include "../Observer/Observer.h"
 #include "Crater/Observer/Subject.h"
-
+#include "Crater/Components/RenderableComponent.h"
 namespace CraterEngine
 {
-	unsigned int Scene::m_IdCounter = 0;
-
-	Scene::Scene(const std::string& name) : m_Name(name)
+	Scene::Scene(const std::string& name)
+	: m_Name(name)
 	{
 		m_pSubject = new Subject();
 	}
@@ -31,6 +30,11 @@ namespace CraterEngine
 
 	void Scene::Add(GameObject* object)
 	{
+		if ( object->HasComponent<RenderableComponent>() )
+		{
+			m_RenderObjects.push_back(object);
+		}
+
 		object->SetSubject(m_pSubject);
 		m_Objects.push_back(object);
 	}
@@ -38,28 +42,5 @@ namespace CraterEngine
 	void Scene::AddObserver(Observer* observer)
 	{
 		m_pSubject->AddObserver(observer);
-	}
-
-	void Scene::Update(const float dt)
-	{
-		for ( auto& object : m_Objects )
-		{
-			object->Update(dt);
-		}
-	}
-
-	void Scene::Render() const
-	{
-		for ( const auto& object : m_Objects )
-		{
-			object->Render();
-		}
-	}
-	void Scene::Initialize()
-	{
-		for ( auto& object : m_Objects )
-		{
-			object->Initialize();
-		}
 	}
 }

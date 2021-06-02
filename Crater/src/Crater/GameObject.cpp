@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "Crater/Managers/ResourceManager.h"
 #include "Renderer.h"
-#include "Components/Component.h"
+#include "Components/CoreComponents.h"
 #include "Crater/Events/Event.h"
 #include "Crater/Observer/Subject.h"
 
@@ -27,10 +27,11 @@ namespace CraterEngine
 
 	void GameObject::Render() const
 	{
-		for ( Component* comp : m_Components )
-		{
-			comp->Render();
-		}
+		GetComponent<RenderableComponent>()->Render();
+		//for ( Component* comp : m_Components )
+		//{
+		//	comp->Render();
+		//}
 	}
 	void GameObject::Initialize()
 	{

@@ -9,7 +9,7 @@
 #include "Renderer.h"
 #include <SDL.h>
 #include "GameObject.h"
-#include "Scene.h"
+#include "Scenes/DefaultScene.h"
 #include "Services/ServiceLocator.h"
 #include "Services/Sound/SimpleSDL2AudioMaster.h"
 #include "Services/Sound/LoggingSoundSystem.h"
@@ -49,51 +49,7 @@ namespace CraterEngine
 	 */
 	void Crater::LoadGame() const
 	{
-		auto& scene = SceneManager::GetInstance().CreateScene("Demo");
-
-		{
-			//Background
-			GameObject* go = new GameObject();
-			go->AddComponent<TransformComponent>();
-			go->AddComponent<RenderableComponent>();
-			RenderableComponent* rendererComp = go->GetComponent<RenderableComponent>();
-			rendererComp->SetTexture("background.jpg");
-			scene.Add(go);
-		}
-		{	// Text
-			GameObject* go = new GameObject();
-			go->AddComponent<TransformComponent>();
-			TransformComponent* transformComp = go->GetComponent<TransformComponent>();
-			go->AddComponent<RenderableComponent>();
-			RenderableComponent* renderComp = go->GetComponent<RenderableComponent>();
-			renderComp->SetTextAndColor("Programming 4 Assignment");
-			auto texInfo = renderComp->GetTexInfo().textureRect;
-			transformComp->SetPosition(320 - texInfo.w / 2.f, 150, 0);
-			scene.Add(go);
-		}
-		{ // Logo
-			GameObject* go = new GameObject();
-			go->AddComponent<TransformComponent>();
-			go->AddComponent<RenderableComponent>();
-
-			RenderableComponent* renderComp = go->GetComponent<RenderableComponent>();
-			renderComp->SetTexture("logo.png");
-			auto texInfo = renderComp->GetTexInfo().textureRect;
-
-			TransformComponent* transformComp = go->GetComponent<TransformComponent>();
-			transformComp->SetPosition(320 - texInfo.w / 2.f, 220 - texInfo.h / 2.f, 0);
-			scene.Add(go);
-		}
-		{	// FPS
-			GameObject* go = new GameObject();
-			go->AddComponent<TransformComponent>();
-			TransformComponent* transformComp = go->GetComponent<TransformComponent>();
-			transformComp->SetPosition(20, 20, 0);
-			go->AddComponent<RenderableComponent>();
-			go->AddComponent<FPSComponent>();
-			scene.Add(go);
-		}
-
+		auto& scene = SceneManager::GetInstance().CreateScene<DefaultScene>("DefaultScene");
 		scene.Initialize();
 	}
 
@@ -121,11 +77,11 @@ namespace CraterEngine
 		ServiceLocator::RegisterSoundSystem(new LoggingSoundSystem(new SimpleSDL2AudioMaster()));
 
 		auto& soundService = ServiceLocator::GetSoundService();
-
+		//
 		soundService.AddAudio("../Crater/3rdParty/Simple-SDL2-Audio-master/sounds/door2.wav");
-		size_t soundId = soundService.AddAudio( "../Crater/3rdParty/Simple-SDL2-Audio-master/sounds/door1.wav" );
-		soundService.PlaySound(soundId, SDL_MIX_MAXVOLUME / 4);
-		soundService.PlayMusic("../Crater/3rdParty/Simple-SDL2-Audio-master/music/road.wav", SDL_MIX_MAXVOLUME / 10);
+		//size_t soundId = soundService.AddAudio( "../Crater/3rdParty/Simple-SDL2-Audio-master/sounds/door1.wav" );
+		//soundService.PlaySound(soundId, SDL_MIX_MAXVOLUME / 4);
+		//soundService.PlayMusic("../Crater/3rdParty/Simple-SDL2-Audio-master/music/road.wav", SDL_MIX_MAXVOLUME / 10);
 
 		LoadGame();
 

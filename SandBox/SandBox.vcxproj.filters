@@ -24,7 +24,7 @@
     <ClCompile Include="src\Observers\HealthObserver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scenes\SandboxScene.cpp">
+    <ClCompile Include="src\App\Sandbox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Observers\ScoreObserver.cpp">
@@ -37,6 +37,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Components\ScoreComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SandBoxPCH.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scenes\SandBoxScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -66,6 +72,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Components\ScoreComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SandBoxPCH.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scenes\SandBoxScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

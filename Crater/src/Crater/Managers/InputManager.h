@@ -50,8 +50,6 @@ namespace CraterEngine
 		friend class Singleton<InputManager>;
 		InputManager();
 		
-		/*returns TRUE if a controller was updated.
-		returns FALSE if no controllers are connected.*/
 		bool UpdateControllers();
 		void HandleControllerInput();
 		void OnAction(const int controllerId, const uint16_t keyInfo, const ButtonState buttonState);

@@ -102,6 +102,8 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <StructMemberAlignment>Default</StructMemberAlignment>
       <BufferSecurityCheck>true</BufferSecurityCheck>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>SandBoxPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,6 +132,8 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(Ou
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <StructMemberAlignment>Default</StructMemberAlignment>
       <BufferSecurityCheck>true</BufferSecurityCheck>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>SandBoxPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,6 +160,8 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(Ou
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>SandBoxPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -185,6 +191,8 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(Ou
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>SandBoxPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -210,6 +218,13 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(Ou
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Scenes\SandBoxScene.cpp" />
+    <ClCompile Include="src\SandBoxPCH.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="src\Components\HealthDisplayComponent.cpp" />
     <ClCompile Include="src\Components\ScoreComponent.cpp" />
     <ClCompile Include="src\Components\ScoreDisplayComponent.cpp" />
@@ -217,9 +232,10 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(Ou
     <ClCompile Include="src\Components\HealthComponent.cpp" />
     <ClCompile Include="src\Components\PlayerComponent.cpp" />
     <ClCompile Include="src\Observers\HealthObserver.cpp" />
-    <ClCompile Include="src\Scenes\SandboxScene.cpp" />
+    <ClCompile Include="src\App\Sandbox.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Scenes\SandBoxScene.h" />
     <ClInclude Include="src\Commands\ScoreCommand.h" />
     <ClInclude Include="src\Components\HealthDisplayComponent.h" />
     <ClInclude Include="src\Components\ScoreComponent.h" />
@@ -229,6 +245,7 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(Ou
     <ClInclude Include="src\Components\PlayerComponent.h" />
     <ClInclude Include="src\Observers\HealthObserver.h" />
     <ClInclude Include="src\Commands\LoseLifeCommand.h" />
+    <ClInclude Include="src\SandBoxPCH.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
