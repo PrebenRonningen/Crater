@@ -33,8 +33,8 @@ namespace CraterEngine
 			GameObject* go = new GameObject();
 			go->AddComponent<TransformComponent>();
 			go->AddComponent<RenderableComponent>();
-			RenderableComponent* rendererComp = go->GetComponent<RenderableComponent>();
-			rendererComp->SetTexture("background.jpg");
+			SpriteComponent* pSpriteComp = go->GetComponent<SpriteComponent>();
+			pSpriteComp->SetTexture("background.jpg");
 			AddGameObject(go);
 		}
 		{	// Text
@@ -42,9 +42,11 @@ namespace CraterEngine
 			go->AddComponent<TransformComponent>();
 			TransformComponent* transformComp = go->GetComponent<TransformComponent>();
 			go->AddComponent<RenderableComponent>();
-			RenderableComponent* renderComp = go->GetComponent<RenderableComponent>();
-			renderComp->SetTextAndColor("Programming 4 Assignment");
-			auto texInfo = renderComp->GetTexInfo().textureRect;
+			RenderableComponent* pRenderComp = go->GetComponent<RenderableComponent>();
+			go->AddComponent<TextComponent>();
+			TextComponent* pTextComp = go->GetComponent<TextComponent>();
+			pTextComp->SetText("Programming 4 Assignment");
+			SDL_Rect texInfo = pRenderComp->GetTexInfo().textureRect;
 			transformComp->SetPosition(320 - texInfo.w / 2.f, 150, 0);
 			AddGameObject(go);
 		}
@@ -52,10 +54,11 @@ namespace CraterEngine
 			GameObject* go = new GameObject();
 			go->AddComponent<TransformComponent>();
 			go->AddComponent<RenderableComponent>();
-
-			RenderableComponent* renderComp = go->GetComponent<RenderableComponent>();
-			renderComp->SetTexture("logo.png");
-			auto texInfo = renderComp->GetTexInfo().textureRect;
+			go->AddComponent<SpriteComponent>();
+			RenderableComponent* pRenderComp = go->GetComponent<RenderableComponent>();
+			SpriteComponent* pSpriteComp = go->GetComponent<SpriteComponent>();
+			pSpriteComp->SetTexture("logo.png");
+			auto texInfo = pRenderComp->GetTexInfo().textureRect;
 
 			TransformComponent* transformComp = go->GetComponent<TransformComponent>();
 			transformComp->SetPosition(320 - texInfo.w / 2.f, 220 - texInfo.h / 2.f, 0);
@@ -67,6 +70,7 @@ namespace CraterEngine
 			TransformComponent* transformComp = go->GetComponent<TransformComponent>();
 			transformComp->SetPosition(20, 20, 0);
 			go->AddComponent<RenderableComponent>();
+			go->AddComponent<TextComponent>();
 			go->AddComponent<FPSComponent>();
 			AddGameObject(go);
 		}

@@ -18,6 +18,9 @@ namespace CraterEngine
 
 	bool TransformComponent::Initialize()
 	{
+		if(m_IsInitialized ) return true;
+
+		m_IsInitialized = true;
 		return true;
 	}
 	void TransformComponent::Update(const float)

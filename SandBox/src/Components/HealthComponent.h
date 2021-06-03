@@ -15,7 +15,7 @@ public:
 	HealthComponent& operator=(HealthComponent&& other) noexcept = delete;
 #pragma endregion
 
-	virtual void Update(const float dt) override{dt;};
+	virtual void Update(const float ) override{};
 	//virtual void Render() const override;
 	virtual bool Initialize() override;
 

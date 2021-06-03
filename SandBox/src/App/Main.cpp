@@ -2,9 +2,11 @@
 #include "QbertApplication.h"
 #include "SandBox.h"
 
+
 int main(int, char* [])
 {
-	QbertApplication* eng = new QbertApplication();
+	//QbertApplication* eng = new QbertApplication();
+	Sandbox* eng = new Sandbox();
 
 	eng->Run();
 	if ( eng )

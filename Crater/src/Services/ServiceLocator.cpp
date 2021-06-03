@@ -2,6 +2,9 @@
 #include "ServiceLocator.h"
 #include "Sound/SoundSystem.h"
 #include "Sound/NullSoundSystem.h"
+//Audio
+#include "src/audio.h"
+#include "src/audio.c"
 
 NullSoundSystem ServiceLocator::m_NullSoundServiceInstance{};
 SoundSystem* ServiceLocator::m_SoundServiceInstance = &ServiceLocator::m_NullSoundServiceInstance;

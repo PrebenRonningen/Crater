@@ -7,7 +7,6 @@ HealthDisplayComponent::HealthDisplayComponent(const CraterEngine::GameObject* p
 	: Component(parent)
 	, m_HealthComponent{ healthComponent }
 {
-;
 }
 
 void HealthDisplayComponent::Update(const float)
@@ -15,11 +14,11 @@ void HealthDisplayComponent::Update(const float)
 	if ( m_HealthComponent->GetRemainingLives() != m_PreviousHealth )
 	{
 		int currentHealth = m_HealthComponent->GetRemainingLives();
-		const auto& renderable = m_pParent->GetComponent<CraterEngine::RenderableComponent>();
+		CraterEngine::TextComponent* pTextComp = m_pParent->GetComponent<CraterEngine::TextComponent>();
 		std::stringstream displayText;
-		displayText << renderable->GetText();
+		displayText << pTextComp->GetText();
 		displayText << currentHealth;
-		renderable->SetText(displayText.str());
+		pTextComp->SetText(displayText.str());
 
 		m_PreviousHealth = currentHealth;
 	}

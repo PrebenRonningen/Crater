@@ -14,11 +14,25 @@ QbertLevelOneScene::QbertLevelOneScene(const std::string& name)
 {
 }
 
+void QbertLevelOneScene::Update(const float dt)
+{
+	for ( auto pO : m_Objects )
+	{
+		pO->Update(dt);
+	}
+}
+
+void QbertLevelOneScene::Render() const
+{
+	for ( auto pO : m_RenderObjects )
+	{
+		pO->Render();
+	}
+}
+
 void QbertLevelOneScene::Initialize()
 {
 	m_pPyramid = new GameObject();
 	AddGameObject(m_pPyramid);
-
-
 }
 

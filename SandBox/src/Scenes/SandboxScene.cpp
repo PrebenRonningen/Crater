@@ -40,9 +40,8 @@ void SandBoxScene::Initialize()
 		CraterEngine::GameObject* go = new CraterEngine::GameObject;
 		go->AddComponent<TransformComponent>();
 		go->AddComponent<RenderableComponent>();
-		RenderableComponent* rendererComp = go->GetComponent<RenderableComponent>();
-		rendererComp->SetTexture("background.jpg");
-		Add(go);
+		go->AddComponent<SpriteComponent>("background.jpg");
+		AddGameObject(go);
 	}
 	//{	// Text
 	//	GameObject* go = new GameObject();
@@ -53,7 +52,7 @@ void SandBoxScene::Initialize()
 	//	renderComp->SetTextAndColor("Programming 4 Assignment");
 	//	auto texInfo = renderComp->GetTexInfo().textureRect;
 	//	transformComp->SetPosition(320 - texInfo.w / 2.f, 50, 0);
-	//	Add(go);
+	//	AddGameObject(go);
 	//}
 	//{ // Logo
 	//	GameObject* go = new GameObject();
@@ -63,7 +62,7 @@ void SandBoxScene::Initialize()
 	//	auto texInfo = renderComp->GetTexInfo().textureRect;
 	//	go->AddComponent<TransformComponent>(glm::vec3{ 320 - texInfo.w / 2.f, 100 - texInfo.h / 2.f, 0 });
 	//	
-	//	Add(go);
+	//	AddGameObject(go);
 	//}
 	{	// FPS
 
@@ -72,8 +71,9 @@ void SandBoxScene::Initialize()
 		TransformComponent* transformComp = go->GetComponent<TransformComponent>();
 		transformComp->SetPosition(20, 20, 0);
 		go->AddComponent<RenderableComponent>();
+		go->AddComponent<TextComponent>();
 		go->AddComponent<FPSComponent>();
-		Add(go);
+		AddGameObject(go);
 	}
 
 	{	// Controls
@@ -81,19 +81,19 @@ void SandBoxScene::Initialize()
 		controlInfo->AddComponent<TransformComponent>();
 		TransformComponent* transformComp = controlInfo->GetComponent<TransformComponent>();
 		controlInfo->AddComponent<RenderableComponent>();
+		controlInfo->AddComponent<SpriteComponent>("Controls.png");
 		RenderableComponent* renderComp = controlInfo->GetComponent<RenderableComponent>();
-		renderComp->SetTexture("Controls.png");
+		
 		auto texInfo = renderComp->GetTexInfo().textureRect;
 		transformComp->SetPosition(320.f - texInfo.w / 2.f, 200.f, 0);
-		Add(controlInfo);
+		AddGameObject(controlInfo);
 	}
 
 	{
 		CraterEngine::GameObject* qbert = new CraterEngine::GameObject();
 		qbert->AddComponent<TransformComponent>(glm::vec3{ 10, 110, 0 });
 		qbert->AddComponent<RenderableComponent>();
-		RenderableComponent* pRenderComp = qbert->GetComponent<RenderableComponent>();
-		pRenderComp->SetTexture("Qbert3.png");
+		qbert->AddComponent<SpriteComponent>("Qbert3.png");
 		qbert->AddComponent<HealthComponent>();
 		qbert->AddComponent<ScoreComponent>();
 		qbert->AddComponent<PlayerComponent>();
@@ -102,19 +102,21 @@ void SandBoxScene::Initialize()
 
 		AddObserver(new ScoreObserver);
 		AddObserver(new HealthObserver);
-		Add(qbert);
+		AddGameObject(qbert);
 
 		// DisplayPlayer1Lives
 
 		CraterEngine::GameObject* pPlayerOneLives = new CraterEngine::GameObject();
 		pPlayerOneLives->AddComponent<TransformComponent>(glm::vec3(50, 105, 0));
 		pPlayerOneLives->AddComponent<RenderableComponent>();
-
-		pRenderComp = pPlayerOneLives->GetComponent<RenderableComponent>();
-		pRenderComp->SetTextAndColor("Player 1 Lives Left: ", { 255, 165,0 });
+		std::string text =  "Player 1 Lives Left: ";
+		SDL_Color color = { 255, 165,0 };
+		pPlayerOneLives->AddComponent<TextComponent>(text, color);
+		//TextComponent* pTextComp = pPlayerOneLives->GetComponent<TextComponent>();
+		//pTextComp->SetTextAndColor();
 		pPlayerOneLives->AddComponent<HealthDisplayComponent>(qbert->GetComponent<HealthComponent>());
 
-		Add(pPlayerOneLives);
+		AddGameObject(pPlayerOneLives);
 
 		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::DPadLeft, ButtonState::ButtonDown), new ScoreCommand(qbert, CraterEngine::EventType::ColorChange));
 		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::DPadRigh, ButtonState::ButtonDown), new ScoreCommand(qbert, CraterEngine::EventType::DefetedCoilyWithFlyingDisc));
@@ -125,20 +127,18 @@ void SandBoxScene::Initialize()
 		CraterEngine::GameObject* pPlayerOneScore = new CraterEngine::GameObject();
 		pPlayerOneScore->AddComponent<TransformComponent>(glm::vec3(50, 150, 0));
 		pPlayerOneScore->AddComponent<RenderableComponent>();
-
-		pRenderComp = pPlayerOneScore->GetComponent<RenderableComponent>();
-		pRenderComp->SetTextAndColor("Player 1 Score: ", { 255, 165,0 });
+		text = "Player 1 Lives Left: ";
+		pPlayerOneScore->AddComponent<TextComponent>(text, color);
 		pPlayerOneScore->AddComponent<ScoreDisplayComponent>(qbert->GetComponent<ScoreComponent>());
 
-	Add(pPlayerOneScore);
+		AddGameObject(pPlayerOneScore);
 	}
 
 	{	// Player 2
 		CraterEngine::GameObject* qbert = new CraterEngine::GameObject();
 		qbert->AddComponent<TransformComponent>(glm::vec3{ 250, 10, 0 });
 		qbert->AddComponent<RenderableComponent>();
-		RenderableComponent* pRenderComp = qbert->GetComponent<RenderableComponent>();
-		pRenderComp->SetTexture("Qbert3.png");
+		qbert->AddComponent<SpriteComponent>("Qbert3.png");
 		qbert->AddComponent<HealthComponent>();
 		qbert->AddComponent<ScoreComponent>();
 		qbert->AddComponent<PlayerComponent>();
@@ -146,19 +146,19 @@ void SandBoxScene::Initialize()
 
 		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::RShoulder, ButtonState::ButtonDown), new LoseLifeCommand(qbert));
 
-		Add(qbert);
+		AddGameObject(qbert);
 
 		// DisplayPlayer2Lives
 
 		CraterEngine::GameObject* pPlayerTwoLives = new CraterEngine::GameObject();
 		pPlayerTwoLives->AddComponent<TransformComponent>(glm::vec3(320, 5, 0));
 		pPlayerTwoLives->AddComponent<RenderableComponent>();
-
-		pRenderComp = pPlayerTwoLives->GetComponent<RenderableComponent>();
-		pRenderComp->SetTextAndColor("Player 2 Lives Left: ", { 165, 255,0 });
+		std::string text = "Player 2 Lives Left: ";
+		SDL_Color color = { 165, 255, 0 };
+		pPlayerTwoLives->AddComponent<TextComponent>(text, color);
 		pPlayerTwoLives->AddComponent<HealthDisplayComponent>(qbert->GetComponent<HealthComponent>());
 
-		Add(pPlayerTwoLives);
+		AddGameObject(pPlayerTwoLives);
 
 		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::ButtonA, ButtonState::ButtonDown), new ScoreCommand(qbert, CraterEngine::EventType::ColorChange));
 		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::ButtonB, ButtonState::ButtonDown), new ScoreCommand(qbert, CraterEngine::EventType::DefetedCoilyWithFlyingDisc));
@@ -169,12 +169,12 @@ void SandBoxScene::Initialize()
 		CraterEngine::GameObject* pPlayerTwoScore = new CraterEngine::GameObject();
 		pPlayerTwoScore->AddComponent<TransformComponent>(glm::vec3(320, 50, 0));
 		pPlayerTwoScore->AddComponent<RenderableComponent>();
+		text = "Player 2 Score: ";
+		pPlayerTwoScore->AddComponent<TextComponent>(text, color);
 
-		pRenderComp = pPlayerTwoScore->GetComponent<RenderableComponent>();
-		pRenderComp->SetTextAndColor("Player 2 Score: ", { 165, 255,0 });
 		pPlayerTwoScore->AddComponent<ScoreDisplayComponent>(qbert->GetComponent<ScoreComponent>());
 
-		Add(pPlayerTwoScore);
+		AddGameObject(pPlayerTwoScore);
 	}
 
 	for ( auto o : m_Objects )

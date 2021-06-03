@@ -37,7 +37,8 @@ namespace CraterEngine
 	{
 		for ( Component* comp : m_Components )
 		{
-			comp->Initialize();
+			if(!comp->IsInitialized() )
+				comp->Initialize();
 		}
 	}
 	void GameObject::Notify(const GameObject& object, const EventType& event) const

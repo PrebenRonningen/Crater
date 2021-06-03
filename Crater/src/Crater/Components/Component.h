@@ -7,7 +7,7 @@ namespace CraterEngine
 	{
 	public:
 		Component(const GameObject* parent) 
-		: m_pParent{ parent }{};
+		: m_pParent{ parent }, m_IsInitialized{false}{};
 		virtual ~Component() = default;
 
 	#pragma region deleted
@@ -21,7 +21,10 @@ namespace CraterEngine
 		virtual void Update(const float dt) = 0;
 		virtual void Render() const{};
 
+		bool IsInitialized() { return m_IsInitialized; };
+
 	protected:
+		bool m_IsInitialized;
 		const GameObject* m_pParent{};
 	};
 }

@@ -44,7 +44,7 @@ namespace CraterEngine
 		}
 
 		template <typename T>
-		bool HasComponent()
+		bool HasComponent() const
 		{
 			for ( auto* component : m_Components )
 			{

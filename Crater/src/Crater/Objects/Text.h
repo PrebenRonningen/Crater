@@ -18,7 +18,7 @@ namespace CraterEngine
 		Text& operator=(Text&& other) = delete;
 	#pragma endregion
 
-		void Update(const float dt);
+		void Update(const float dt = 0);
 
 		void SetTextAndColor(const std::string& text, const SDL_Color& color = { 255, 255, 255 });
 		void SetColor(const SDL_Color& color = { 255, 255, 255 });

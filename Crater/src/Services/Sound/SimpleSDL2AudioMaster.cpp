@@ -2,6 +2,7 @@
 #include "SimpleSDL2AudioMaster.h"
 
 
+
 namespace CraterEngine
 {
 	SimpleSDL2AudioMaster::SimpleSDL2AudioMaster()

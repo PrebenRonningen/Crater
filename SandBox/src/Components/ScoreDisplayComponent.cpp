@@ -14,11 +14,11 @@ void ScoreDisplayComponent::Update(const float)
 	if ( m_pScoreComponent->GetScore() != m_PreviousScore )
 	{
 		int currentScore = m_pScoreComponent->GetScore();
-		const auto& renderable = m_pParent->GetComponent<CraterEngine::RenderableComponent>();
+		CraterEngine::TextComponent* pTextComp = m_pParent->GetComponent<CraterEngine::TextComponent>();
 		std::stringstream displayText;
-		displayText << renderable->GetText();
+		displayText << pTextComp->GetText();
 		displayText << currentScore;
-		renderable->SetText(displayText.str());
+		pTextComp->SetText(displayText.str());
 
 		m_PreviousScore = currentScore;
 	}

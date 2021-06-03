@@ -218,7 +218,7 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(Ou
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LevelComponent.cpp" />
+    <ClCompile Include="src\Components\LevelComponent.cpp" />
     <ClCompile Include="src\Scenes\QbertLevelOneScene.cpp" />
     <ClCompile Include="src\App\Main.cpp" />
     <ClCompile Include="src\App\QbertApplication.cpp" />
@@ -239,7 +239,7 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(Ou
     <ClCompile Include="src\App\Sandbox.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LevelComponent.h" />
+    <ClInclude Include="src\Components\LevelComponent.h" />
     <ClInclude Include="src\Scenes\QbertLevelOneScene.h" />
     <ClInclude Include="src\App\QbertApplication.h" />
     <ClInclude Include="src\App\SandBox.h" />

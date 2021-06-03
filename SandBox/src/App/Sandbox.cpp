@@ -3,6 +3,8 @@
 
 #include "Scenes/SandBoxScene.h"
 
+
+
 void Sandbox::LoadGame() const
 {
 	//InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::ButtonA, ButtonState::ButtonDown), new PressedTestCommand);

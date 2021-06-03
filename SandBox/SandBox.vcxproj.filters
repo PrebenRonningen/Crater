@@ -51,7 +51,7 @@
     <ClCompile Include="src\App\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LevelComponent.cpp">
+    <ClCompile Include="src\Components\LevelComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Scenes\QbertLevelOneScene.cpp">
@@ -98,7 +98,7 @@
     <ClInclude Include="src\App\QbertApplication.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LevelComponent.h">
+    <ClInclude Include="src\Components\LevelComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Scenes\QbertLevelOneScene.h">

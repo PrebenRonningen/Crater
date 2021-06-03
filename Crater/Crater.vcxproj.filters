@@ -81,10 +81,10 @@
     <ClCompile Include="src\Crater\Scenes\DefaultScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Crater\Components\TextRenderComponent.cpp">
+    <ClCompile Include="src\Crater\Components\SpriteComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Crater\Components\SpriteRenderComponent.cpp">
+    <ClCompile Include="src\Crater\Components\TextComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -203,10 +203,10 @@
     <ClInclude Include="src\Crater\Scenes\DefaultScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Crater\Components\TextRenderComponent.h">
+    <ClInclude Include="src\Crater\Components\SpriteComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Crater\Components\SpriteRenderComponent.h">
+    <ClInclude Include="src\Crater\Components\TextComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
