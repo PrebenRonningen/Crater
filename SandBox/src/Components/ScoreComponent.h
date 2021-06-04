@@ -1,6 +1,6 @@
 #pragma once
 
-class ScoreComponent : public CraterEngine::Component
+class ScoreComponent final : public CraterEngine::Component
 {
 public:
 	ScoreComponent(const CraterEngine::GameObject* parent);

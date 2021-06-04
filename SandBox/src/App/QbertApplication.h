@@ -1,7 +1,7 @@
 #pragma once
 #include <CraterEngine.h>
 
-class QbertApplication : public CraterEngine::Crater
+class QbertApplication final : public CraterEngine::Crater
 {
 public:
 	QbertApplication()

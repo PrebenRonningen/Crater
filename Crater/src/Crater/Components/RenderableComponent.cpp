@@ -5,90 +5,75 @@
 
 namespace CraterEngine
 {
-	//TODO: Spliti into SpriteRenderComponent & TextRenderComponent
 	RenderableComponent::RenderableComponent(const GameObject* parent)
 		: Component(parent)
 		, m_pTexture2D{ nullptr }
 		, m_TexData{}
 	{
-		//if ( !filePath.empty() )
-		//{
-		//	m_pTexture2D = ResourceManager::GetInstance().LoadTexture(m_TexturePath);
-		//}
 	}
 
 	RenderableComponent::~RenderableComponent()
 	{
-		//if ( m_pTexture2D )
-		//{
-		//	delete m_pTexture2D;
-		//	m_pTexture2D = nullptr;
-		//}
-		//if ( m_pText )
-		//{
-		//	delete m_pText;
-		//	m_pText = nullptr;
-		//}
 	}
 	
 	bool RenderableComponent::Initialize()
 	{
-		//if ( m_pText )
-		//{
-		//	m_pText->Update(0);
-		//}
 		if(m_IsInitialized ) return true;
+		UpdateDestination();
 		m_IsInitialized = true;
 		return true;
 	}
 
 	void RenderableComponent::Update(const float /*dt*/)
 	{
-		//if ( m_pText )
-		//{
-		//	m_pText->Update(dt);
-		//	m_pTexture2D = m_pText->GetTextTexture();
-		//}
 	}
 
 	void RenderableComponent::Render() const
 	{
-		if ( uint64_t(m_pTexture2D->GetSDLTexture()) == 0xdddddddddddddddd )
-		{
-			std::cout << "send Help";
-		}
-
 		if ( m_pTexture2D )
 		{
-			const auto& transform = m_pParent->GetComponent<TransformComponent>()->GetPosition();
-			Renderer::GetInstance().RenderTexture(*m_pTexture2D, transform.x, transform.y);
+			Renderer::GetInstance().RenderTexture(*m_pTexture2D, m_TexData.destinationRectangle, m_TexData.sourceRectange);
 		}
 	}
 
-	//void RenderableComponent::SetTexture(const std::string& filePath)
-	//{
-	//	if ( m_pTexture2D )
-	//	{
-	//		delete m_pTexture2D;
-	//		m_pTexture2D = ResourceManager::GetInstance().LoadTexture(filePath);
-	//		return;
-	//	}
-	//	m_pTexture2D = ResourceManager::GetInstance().LoadTexture(filePath);
-	//}
-
 	void RenderableComponent::SetTexture(Texture2D* pTexture)
 	{
-		//if ( m_pTexture2D )
-		//{
-		//	delete m_pTexture2D;
-		//	m_pTexture2D = pTexture;
-		//	return;
-		//}
-		m_pTexture2D = pTexture;
+		if ( pTexture != nullptr )
+		{
+			m_pTexture2D = pTexture;
+			FillTextureData();
+		}
+	}
+
+	void RenderableComponent::SetTexture(Texture2D* pTexture, const TextureData& textureData)
+	{
+		if ( pTexture != nullptr )
+		{
+			m_pTexture2D = pTexture;
+			m_TexData = textureData;
+		}
+	}
+
+	void RenderableComponent::UpdateDestination()
+	{
+		const auto& transform = m_pParent->GetComponent<TransformComponent>();
+		m_TexData.destinationRectangle.x = int(transform->GetPosition().x);
+		m_TexData.destinationRectangle.y = int(transform->GetPosition().y);
+
+		m_TexData.destinationRectangle.w = int(m_TexData.sourceRectange.w * transform->GetScale().x);
+		m_TexData.destinationRectangle.h = int(m_TexData.sourceRectange.h * transform->GetScale().y);
+		
+	}
+
+	void RenderableComponent::SetSourceRect(const SDL_Rect& srcRect)
+	{
+		m_TexData.sourceRectange = srcRect;
 	}
 
 	void RenderableComponent::FillTextureData()
 	{
 		SDL_QueryTexture(m_pTexture2D->GetSDLTexture(), NULL, NULL, &m_TexData.textureRect.w, &m_TexData.textureRect.h);
+		m_TexData.destinationRectangle.w = m_TexData.sourceRectange.w = m_TexData.textureRect.w;
+		m_TexData.destinationRectangle.h = m_TexData.sourceRectange.h = m_TexData.textureRect.h;
 	}
 }

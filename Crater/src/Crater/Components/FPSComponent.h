@@ -6,7 +6,7 @@
 namespace CraterEngine
 {
 	class Font;
-	class FPSComponent : public Component
+	class FPSComponent final : public Component
 	{
 	public:
 		FPSComponent(const GameObject* parent);

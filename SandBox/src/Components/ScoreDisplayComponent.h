@@ -2,7 +2,7 @@
 #include "CraterEngine.h"
 #include "ScoreComponent.h"
 
-class ScoreDisplayComponent : public CraterEngine::Component
+class ScoreDisplayComponent final : public CraterEngine::Component
 {
 public:
 	ScoreDisplayComponent(const CraterEngine::GameObject* parent, ScoreComponent* scoreComp);

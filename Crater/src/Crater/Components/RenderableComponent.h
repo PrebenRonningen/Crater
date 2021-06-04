@@ -7,12 +7,14 @@
 
 namespace CraterEngine
 {
-	class RenderableComponent : public Component
+	struct TextureData
 	{
-		struct TextureData
-		{
-			SDL_Rect textureRect{};
-		};
+		SDL_Rect textureRect{};
+		SDL_Rect destinationRectangle{};
+		SDL_Rect sourceRectange{};
+	};
+	class RenderableComponent final : public Component
+	{
 	public:
 		RenderableComponent(const GameObject* parent);
 		virtual ~RenderableComponent() override;
@@ -27,15 +29,12 @@ namespace CraterEngine
 		virtual bool Initialize() override;
 		virtual void Update(const float dt) override;
 		virtual void Render() const override;
-		//void SetTexture(const std::string& text);
-		void SetTexture(Texture2D* pTexture);
-		//void SetTextAndColor(const std::string& text, const SDL_Color& color = { 255, 255, 255 });
-		//void SetText(const std::string& text);
 
-		//std::string GetText() const
-		//{
-		//	return m_pText->GetText();
-		//}
+		void SetTexture(Texture2D* pTexture);
+		void SetTexture(Texture2D* pTexture, const TextureData& textureData);
+		void UpdateDestination();
+		void SetSourceRect(const SDL_Rect& srcRect);
+
 		const TextureData& GetTexInfo()
 		{
 			FillTextureData();

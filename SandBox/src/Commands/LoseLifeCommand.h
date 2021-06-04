@@ -1,7 +1,7 @@
 #pragma once
 #include "Components/HealthComponent.h"
 
-class LoseLifeCommand : public CraterEngine::Command
+class LoseLifeCommand final : public CraterEngine::Command
 {
 public:
 	LoseLifeCommand(CraterEngine::GameObject* pObject)

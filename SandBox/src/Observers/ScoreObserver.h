@@ -2,7 +2,7 @@
 #include "CraterEngine.h"
 #include <tuple>
 
-class ScoreObserver : public CraterEngine::Observer
+class ScoreObserver final : public CraterEngine::Observer
 {
 public:
 	ScoreObserver() = default;

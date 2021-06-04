@@ -2,7 +2,7 @@
 
 
 class CraterEngine::GameObject;
-class PlayerComponent : public CraterEngine::Component
+class PlayerComponent final : public CraterEngine::Component
 {
 public:
 

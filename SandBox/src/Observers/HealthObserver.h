@@ -1,7 +1,7 @@
 #pragma once
 #include "CraterEngine.h"
 
-class HealthObserver : public CraterEngine::Observer
+class HealthObserver final : public CraterEngine::Observer
 {
 public:
 	HealthObserver() = default;

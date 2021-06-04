@@ -1,7 +1,7 @@
 #pragma once
 #include <CraterEngine.h>
 
-class QbertLevelOneScene : public CraterEngine::Scene
+class QbertLevelOneScene final : public CraterEngine::Scene
 {
 public:
 	virtual ~QbertLevelOneScene() override;

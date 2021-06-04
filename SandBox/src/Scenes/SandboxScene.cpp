@@ -136,9 +136,9 @@ void SandBoxScene::Initialize()
 
 	{	// Player 2
 		CraterEngine::GameObject* qbert = new CraterEngine::GameObject();
-		qbert->AddComponent<TransformComponent>(glm::vec3{ 250, 10, 0 });
+		qbert->AddComponent<TransformComponent>(glm::vec3{ 250, 10, 0 }, glm::vec3{ 0, 0, 0 }, glm::vec3{ 5, 5, 1});
 		qbert->AddComponent<RenderableComponent>();
-		qbert->AddComponent<SpriteComponent>("Qbert3.png");
+		qbert->AddComponent<SpriteComponent>("Qbert3.png", 2, 2);
 		qbert->AddComponent<HealthComponent>();
 		qbert->AddComponent<ScoreComponent>();
 		qbert->AddComponent<PlayerComponent>();

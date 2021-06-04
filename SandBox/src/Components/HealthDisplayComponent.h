@@ -2,7 +2,7 @@
 #include "CraterEngine.h"
 #include "HealthComponent.h"
 
-class HealthDisplayComponent : public CraterEngine::Component
+class HealthDisplayComponent final : public CraterEngine::Component
 {
 public:
 	HealthDisplayComponent(const CraterEngine::GameObject* parent, HealthComponent* healthComponent);

@@ -2,7 +2,7 @@
 #include <cstdint>
 
 class CraterEngine::GameObject;
-class HealthComponent : public CraterEngine::Component
+class HealthComponent final : public CraterEngine::Component
 {
 public:
 	HealthComponent(const CraterEngine::GameObject* parent);

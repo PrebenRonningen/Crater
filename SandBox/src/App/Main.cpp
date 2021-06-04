@@ -5,9 +5,9 @@
 
 int main(int, char* [])
 {
-	//QbertApplication* eng = new QbertApplication();
-	Sandbox* eng = new Sandbox();
-
+	QbertApplication* eng = new QbertApplication();
+	//Sandbox* eng = new Sandbox();
+	srand(unsigned int(std::time(0)));
 	eng->Run();
 	if ( eng )
 	{

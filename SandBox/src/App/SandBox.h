@@ -1,6 +1,6 @@
 #pragma once
 #include <CraterEngine.h>
-class Sandbox : public CraterEngine::Crater
+class Sandbox final : public CraterEngine::Crater
 {
 public:
 	Sandbox()

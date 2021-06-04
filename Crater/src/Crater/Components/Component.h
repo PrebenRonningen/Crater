@@ -8,6 +8,7 @@ namespace CraterEngine
 	public:
 		Component(const GameObject* parent) 
 		: m_pParent{ parent }, m_IsInitialized{false}{};
+
 		virtual ~Component() = default;
 
 	#pragma region deleted

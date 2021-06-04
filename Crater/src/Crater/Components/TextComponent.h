@@ -12,6 +12,13 @@ namespace CraterEngine
 		TextComponent(const GameObject* parent, const std::string& text = "", const SDL_Color& color = { 255, 255, 255 });
 		virtual ~TextComponent();
 
+#pragma region deleted
+		TextComponent(const TextComponent& other) = delete;
+		TextComponent(TextComponent&& other) = delete;
+		TextComponent& operator=(const TextComponent& other) = delete;
+		TextComponent& operator=(TextComponent&& other) = delete;
+#pragma endregion
+
 		//void SetTexture(const std::string & filePath);
 		void SetTextAndColor(const std::string& text, const SDL_Color& color = { 255, 255, 255 });
 		void SetText(const std::string& text);

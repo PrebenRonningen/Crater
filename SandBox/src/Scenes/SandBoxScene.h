@@ -1,7 +1,7 @@
 #pragma once
 #include <CraterEngine.h>
 
-class SandBoxScene : public CraterEngine::Scene
+class SandBoxScene final : public CraterEngine::Scene
 {
 public:
 	virtual ~SandBoxScene() = default;

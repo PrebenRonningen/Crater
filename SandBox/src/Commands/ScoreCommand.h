@@ -1,7 +1,7 @@
 #pragma once
 #include "CraterEngine.h"
 
-class ScoreCommand : public CraterEngine::Command
+class ScoreCommand final : public CraterEngine::Command
 {
 public:
 	ScoreCommand(CraterEngine::GameObject* pObject, const CraterEngine::EventType& eventType)
