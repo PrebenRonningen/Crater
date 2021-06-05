@@ -14,8 +14,8 @@ namespace CraterEngine
 		DefaultScene& operator=(const DefaultScene& other) = delete;
 		DefaultScene& operator=(DefaultScene&& other) = delete;
 
-		virtual void Update(const float dt);
-		virtual void Render() const;
+		//virtual void Update(const float dt);
+		//virtual void Render() const;
 		virtual void Initialize();
 
 	private:

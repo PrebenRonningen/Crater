@@ -4,7 +4,6 @@
 
 namespace CraterEngine
 {
-	class RenderableComponent;
 	class GameObject;
 	class TextComponent final : public Component
 	{
@@ -19,32 +18,27 @@ namespace CraterEngine
 		TextComponent& operator=(TextComponent&& other) = delete;
 #pragma endregion
 
-		//void SetTexture(const std::string & filePath);
-		void SetTextAndColor(const std::string& text, const SDL_Color& color = { 255, 255, 255 });
+		virtual bool Initialize() override;
+		virtual void Update(const float dt) override;
+		virtual void Render() const override;
+
 		void SetText(const std::string& text);
 		void SetColor(const SDL_Color& color);
+		void SetTextAndColor(const std::string& text, const SDL_Color& color = { 255, 255, 255 });
 		std::string GetText() const
 		{
 			return m_pText->GetText();
 		}
-
-		virtual bool Initialize() override;
-		virtual void Update(const float dt) override
+		const TextureData& GetTexInfo()
 		{
-			if ( m_pText )
-			{
-				m_pText->Update(dt);
-				m_pTexture2D = m_pText->GetTextTexture();
-			}
+			return m_TextureInfo;
 		};
-		
 	private:
-		void PassTextureToRenderComponent();
-
+		void FillTextureData();
 		Texture2D* m_pTexture2D;
 		std::string m_TextString;
+		TextureData m_TextureInfo;
 		Text* m_pText;
-		RenderableComponent* m_pParentRenderComponent;
 		SDL_Color m_Color;
 	};
 }

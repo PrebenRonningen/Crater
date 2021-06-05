@@ -27,12 +27,13 @@ namespace CraterEngine
 
 	void GameObject::Render() const
 	{
-		GetComponent<RenderableComponent>()->Render();
+		//GetComponent<RenderableComponent>()->Render();
 		//for ( Component* comp : m_Components )
 		//{
 		//	comp->Render();
 		//}
 	}
+
 	void GameObject::Initialize()
 	{
 		for ( Component* comp : m_Components )

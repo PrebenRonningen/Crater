@@ -5,6 +5,12 @@ namespace CraterEngine
 	/**
 	 * Simple RAII wrapper for an SDL_Texture
 	 */
+	struct TextureData
+	{
+		SDL_Rect textureRect{};
+		SDL_Rect destinationRectangle{};
+		SDL_Rect sourceRectange{};
+	};
 	class Texture2D
 	{
 	public:

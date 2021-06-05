@@ -30,11 +30,6 @@ namespace CraterEngine
 
 	void Scene::AddGameObject(GameObject* object)
 	{
-		if ( object->HasComponent<RenderableComponent>() )
-		{
-			m_RenderObjects.push_back(object);
-		}
-
 		object->SetSubject(m_pSubject);
 		m_Objects.push_back(object);
 	}
@@ -42,5 +37,23 @@ namespace CraterEngine
 	void Scene::AddObserver(Observer* observer)
 	{
 		m_pSubject->AddObserver(observer);
+	}
+	void Scene::Update(const float dt)
+	{
+		for ( auto pO : m_Objects )
+		{
+			pO->Update(dt);
+		}
+	}
+	void Scene::Render() const
+	{
+		for ( auto pO : m_RenderObjects )
+		{
+			pO->Render();
+		}
+	}
+	void Scene::RegisterComponentToRender(Component* pComponent)
+	{
+		m_RenderObjects.push_back(pComponent);
 	}
 }

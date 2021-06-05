@@ -8,7 +8,6 @@ ScoreDisplayComponent::ScoreDisplayComponent(const CraterEngine::GameObject* par
 {
 }
 
-
 void ScoreDisplayComponent::Update(const float)
 {
 	if ( m_pScoreComponent->GetScore() != m_PreviousScore )

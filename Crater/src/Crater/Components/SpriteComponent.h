@@ -6,7 +6,7 @@
 namespace CraterEngine
 {
 	class GameObject;
-	struct TextureData;
+	
 	class SpriteComponent final : public Component
 	{
 	public:
@@ -20,26 +20,26 @@ namespace CraterEngine
 		SpriteComponent& operator=(SpriteComponent&& other) = delete;
 #pragma endregion
 
-		void SetTexture(const std::string& filePath);
 		virtual bool Initialize() override;
-		virtual void Update(const float ) override{};
-		void SetTextureSource(int row, int col);
-		void GetRowAndCol(int& row, int& col)const{
-			float column = float(m_TextureInfo.sourceRectange.x) / m_TextureInfo.textureRect.w;
-			float rw = float(m_TextureInfo.sourceRectange.y) / m_TextureInfo.textureRect.h;
+		virtual void Update( const float ) override{};
+		virtual void Render() const override;
 
-			col = int(column * m_Columns);
-			row = int(rw * m_Rows);
-		}
+		void SetTexture(const std::string& filePath);
+		void SetTextureSource(int row, int col);
+		void UpdateDestination();
+		void SetDestination(int x, int y);
+		void GetRowAndCol(int& row, int& col) const;
+		const TextureData& GetTexInfo()
+		{
+			FillTextureData(); 
+			return m_TextureInfo;
+		};
 	private:
-		//void UpdateTextureInfo(const int srcRow = 0, const int srcCol = 0);
-		void PassTextureToRenderComponent();
 
 		void FillTextureData();
 
 		Texture2D* m_pTexture2D;
 		std::string m_TexturePath;
-		RenderableComponent* m_pParentRenderComponent;
 		TextureData m_TextureInfo;
 		int m_Rows;
 		int m_Columns;
