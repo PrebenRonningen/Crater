@@ -6,8 +6,7 @@ namespace CraterEngine
 	class Component
 	{
 	public:
-		Component(const GameObject* parent) 
-		: m_pParent{ parent }, m_IsInitialized{false}, m_HasEvent{false}{};
+		Component(const GameObject* parent) ;
 
 		virtual ~Component() = default;
 
@@ -26,10 +25,12 @@ namespace CraterEngine
 	
 		void EventHandeled(){m_HasEvent = false;}
 		bool HasEvent() const { return m_HasEvent; }
+		void NotifyParrent() const;
 	protected:
 		bool m_HasEvent;
 		bool m_IsInitialized;
 		const GameObject* m_pParent{};
 	};
+
 }
 

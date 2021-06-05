@@ -12,7 +12,7 @@
 void HealthObserver::OnNotify(const CraterEngine::GameObject* pObject)
 {
 	HealthComponent* pHealthComp = pObject->GetComponent<HealthComponent>();
-	if( pHealthComp->HasEvent() ) return;
+	if( !pHealthComp->HasEvent() ) return;
 	
 	const PlayerComponent* pPlayerComp = pObject->GetComponent<PlayerComponent>();
 

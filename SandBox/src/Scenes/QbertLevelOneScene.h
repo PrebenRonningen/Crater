@@ -19,8 +19,8 @@ public:
 	virtual void Initialize();
 private:
 
-	float time = 0;
-	float neededTime = 1;
+	float time;
+	float neededTime;
 
 	CraterEngine::SpriteComponent* m_qSprite;
 	CraterEngine::GameObject* m_pPyramid;

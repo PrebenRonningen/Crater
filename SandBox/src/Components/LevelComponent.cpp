@@ -10,36 +10,37 @@ LevelComponent::LevelComponent(const CraterEngine::GameObject* parent, const int
 	for(int i{}; i < m_Height; ++i )
 		for(int j{}; j < m_Height-i; ++j )
 			m_NumCubes++;
-
-	for ( int i{}; i < m_NumCubes; ++i )
-	{
-		if( randF(0.0f, 100.f) > 50 )
-			m_NeededTime.push_back(randF(0.125f, 0.25f));
-		else
-			m_NeededTime.push_back(randF(2.5f, 5.0f));
-	}
-
-	m_AccumulatedTime.resize(m_NumCubes, 0);
+	//
+	//for ( int i{}; i < m_NumCubes; ++i )
+	//{
+	//	if( randF(0.0f, 100.f) > 50 )
+	//		m_NeededTime.push_back(randF(0.125f, 0.25f));
+	//	else
+	//		m_NeededTime.push_back(randF(2.5f, 5.0f));
+	//}
+	//
+	//m_AccumulatedTime.resize(m_NumCubes, 0);
 
 	CalculateSpawnPos();
 }
 
 void LevelComponent::Update(const float dt)
 {
-	for ( int i{}; i < m_NumCubes; ++i )
-	{
-		m_AccumulatedTime[i] += dt;
-		if ( m_AccumulatedTime[i] >= m_NeededTime[i] )
-		{
-			m_AccumulatedTime[i] -= m_NeededTime[i];
-			
-			auto* k = m_pParent->GetComponent<CraterEngine::SpriteComponent>();
-			int col{};
-			k->GetRowAndCol(m_Cubes[i].stage, col);
-			m_Cubes[i].stage++;
-			//k->SetTextureSource(++row, col);
-		}
-	}
+dt;
+//	for ( int i{}; i < m_NumCubes; ++i )
+//	{
+//		m_AccumulatedTime[i] += dt;
+//		if ( m_AccumulatedTime[i] >= m_NeededTime[i] )
+//		{
+//			m_AccumulatedTime[i] -= m_NeededTime[i];
+//			
+//			auto* k = m_pParent->GetComponent<CraterEngine::SpriteComponent>();
+//			int col{};
+//			k->GetRowAndCol(m_Cubes[i].stage, col);
+//			m_Cubes[i].stage++;
+//			//k->SetTextureSource(++row, col);
+//		}
+//	}
 }
 
 bool LevelComponent::Initialize()
@@ -58,6 +59,44 @@ void LevelComponent::Render() const
 		k->SetDestination(c.pos.x, c.pos.y);
 		k->SetTextureSource(c.stage, 0);
 		k->Render();
+	}
+}
+
+void LevelComponent::RegisterPlayer(QbertComponent* qbert)
+{
+	m_Players.push_back(qbert);
+}
+
+void LevelComponent::FlipCube(const glm::vec3& cubeAtPostions)
+{
+	glm::ivec3 cubePos = cubeAtPostions - m_pParent->GetComponent<CraterEngine::TransformComponent>()->GetPosition();
+	glm::ivec2 qBertSpriteSize{ 16, 16 };
+	cubePos.x -= qBertSpriteSize.x;
+	cubePos.y += qBertSpriteSize.y;
+
+
+	auto cube = std::find_if(m_Cubes.begin(), m_Cubes.end(), [cubePos](Cube c){ return cubePos == c.pos;});
+	if ( cube != m_Cubes.end() )
+	{
+		switch ( cube->state )
+		{
+			case Cube::SwitchState::Permanent:
+				if(cube->stage == 0 )
+					cube->stage++;
+				break;
+			case Cube::SwitchState::Reverting:
+				if ( cube->stage != 0 )
+					cube->stage--;
+				break;
+			case Cube::SwitchState::MultiStage:
+				if ( cube->stage <= 1 )
+					cube->stage++;
+				else
+					cube->stage--;
+				break;
+			default:
+				break;
+		}
 	}
 }
 

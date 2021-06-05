@@ -14,8 +14,8 @@ QbertLevelOneScene::~QbertLevelOneScene()
 
 QbertLevelOneScene::QbertLevelOneScene(const std::string& name)
 	: Scene(name)
-	, time{}
-	, neededTime{}
+	, time{0}
+	, neededTime{1}
 	, m_pPyramid{nullptr}
 	, m_qSprite{nullptr}
 {
@@ -68,7 +68,7 @@ void QbertLevelOneScene::Initialize()
 		m_pPyramid = new GameObject();
 		
 		m_pPyramid->AddComponent<TransformComponent>(glm::vec3{ 112, 352, 0 }, glm::vec3{0,0,0}, glm::vec3{2,2,2});
-		m_pPyramid->AddComponent<SpriteComponent>("Tile/Level2Cube.png", 3);
+		m_pPyramid->AddComponent<SpriteComponent>("Tile/Level1Cube.png", 2);
 		m_pPyramid->AddComponent<LevelComponent>(7);
 
 		// TODO: Add Level Observer for Qbert to notify that it has moved
@@ -77,14 +77,14 @@ void QbertLevelOneScene::Initialize()
 
 		AddObserver(new LevelObserver(m_pPyramid->GetComponent<LevelComponent>()));
 	}
-
 	{
 		GameObject* qBert = new GameObject();
 		qBert->AddComponent<TransformComponent>(m_pPyramid->GetComponent<LevelComponent>()->GetSpawnPos(), glm::vec3{ 0,0,0 }, glm::vec3{ 2,2,2 });
 		qBert->AddComponent<SpriteComponent>("Qbert/Qbert.png", 1, 8);
-		qBert->AddComponent<QbertComponent>();
+		qBert->AddComponent<QbertComponent>(m_pPyramid->GetComponent<LevelComponent>());
 		m_qSprite = qBert->GetComponent<SpriteComponent>();
 		RegisterComponentToRender(qBert->GetComponent<SpriteComponent>());
+		m_pPyramid->GetComponent<LevelComponent>()->RegisterPlayer(qBert->GetComponent<QbertComponent>());
 		AddGameObject(qBert);
 	}
 	//pos is +208x = 3*64 + 16

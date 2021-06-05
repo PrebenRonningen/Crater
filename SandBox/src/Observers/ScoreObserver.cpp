@@ -9,7 +9,7 @@
 void ScoreObserver::OnNotify(const CraterEngine::GameObject* pObject)
 {
 	ScoreComponent* pScoreComponent = pObject->GetComponent<ScoreComponent>();
-	if( pScoreComponent->HasEvent() )
+	if( !pScoreComponent->HasEvent() ) return;
 
 	switch ( pScoreComponent->GetEvent() )
 	{

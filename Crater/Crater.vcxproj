@@ -219,6 +219,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Crater\Components\Component.cpp" />
     <ClCompile Include="src\Crater\Components\SpriteComponent.cpp" />
     <ClCompile Include="src\Crater\Scenes\DefaultScene.cpp" />
     <ClCompile Include="src\Services\Sound\LoggingSoundSystem.cpp">

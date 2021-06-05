@@ -1,9 +1,10 @@
 #pragma once
 #include <CraterEngine.h>
+class LevelComponent;
 class QbertComponent : public CraterEngine::Component
 {
 public:
-	QbertComponent(const CraterEngine::GameObject* parent);
+	QbertComponent(const CraterEngine::GameObject* parent, LevelComponent* levelComponent);
 	virtual ~QbertComponent() = default;
 
 #pragma region deleted
@@ -14,11 +15,10 @@ public:
 #pragma endregion
 
 	virtual void Update(const float dt) override{dt;};
-	virtual bool Initialize() override{return true;};
+	virtual bool Initialize() override;
 	virtual void Render() const override{};
 
-
 private:
-
+	LevelComponent* m_LevelComponent;
 };
 
