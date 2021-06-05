@@ -123,10 +123,10 @@ void SandBoxScene::Initialize()
 		RegisterComponentToRender(pPlayerOneLives->GetComponent<TextComponent>());
 		AddGameObject(pPlayerOneLives);
 
-		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::DPadLeft, ButtonState::ButtonDown), new ScoreCommand(qbert, CraterEngine::EventType::ColorChange));
-		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::DPadRigh, ButtonState::ButtonDown), new ScoreCommand(qbert, CraterEngine::EventType::DefetedCoilyWithFlyingDisc));
-		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::DPadDown, ButtonState::ButtonDown), new ScoreCommand(qbert, CraterEngine::EventType::DiscRemaining));
-		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::DPadUp, ButtonState::ButtonDown), new ScoreCommand(qbert, CraterEngine::EventType::CaughtSam));
+		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::DPadLeft, ButtonState::ButtonDown), new ScoreCommand(qbert, ScoreComponent::ScoreEvent::ColorChange));
+		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::DPadRigh, ButtonState::ButtonDown), new ScoreCommand(qbert, ScoreComponent::ScoreEvent::DefetedCoilyWithFlyingDisc));
+		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::DPadDown, ButtonState::ButtonDown), new ScoreCommand(qbert, ScoreComponent::ScoreEvent::DiscRemaining));
+		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::DPadUp, ButtonState::ButtonDown), new ScoreCommand(qbert, ScoreComponent::ScoreEvent::CaughtSam));
 
 		//	DisplayScore
 		CraterEngine::GameObject* pPlayerOneScore = new CraterEngine::GameObject();
@@ -165,10 +165,10 @@ void SandBoxScene::Initialize()
 		RegisterComponentToRender(pPlayerTwoLives->GetComponent<TextComponent>());
 		AddGameObject(pPlayerTwoLives);
 
-		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::ButtonA, ButtonState::ButtonDown), new ScoreCommand(qbert, CraterEngine::EventType::ColorChange));
-		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::ButtonB, ButtonState::ButtonDown), new ScoreCommand(qbert, CraterEngine::EventType::DefetedCoilyWithFlyingDisc));
-		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::ButtonX, ButtonState::ButtonUp), new ScoreCommand(qbert, CraterEngine::EventType::DiscRemaining));
-		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::ButtonY, ButtonState::ButtonDown), new ScoreCommand(qbert, CraterEngine::EventType::CaughtSam));
+		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::ButtonA, ButtonState::ButtonDown), new ScoreCommand(qbert, ScoreComponent::ScoreEvent::ColorChange));
+		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::ButtonB, ButtonState::ButtonDown), new ScoreCommand(qbert, ScoreComponent::ScoreEvent::DefetedCoilyWithFlyingDisc));
+		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::ButtonX, ButtonState::ButtonUp), new ScoreCommand(qbert, ScoreComponent::ScoreEvent::DiscRemaining));
+		InputManager::GetInstance().AssignCommand(std::tuple(0, ControllerButton::ButtonY, ButtonState::ButtonDown), new ScoreCommand(qbert, ScoreComponent::ScoreEvent::CaughtSam));
 
 		//	DisplayScore
 		CraterEngine::GameObject* pPlayerTwoScore = new CraterEngine::GameObject();

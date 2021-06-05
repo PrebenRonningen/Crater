@@ -22,7 +22,8 @@ namespace CraterEngine
 		void AddObserver(Observer* observer);
 		void RemoveObserver(Observer* observer);
 
-		void Notify(const GameObject& object, const EventType& event);
+		void Notify(const GameObject* object);
+
 	protected:
 	
 	private:

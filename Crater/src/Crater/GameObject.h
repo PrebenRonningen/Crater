@@ -53,7 +53,7 @@ namespace CraterEngine
 			return false;
 		}
 
-		void Notify(const GameObject& object, const CraterEngine::EventType& event) const;
+		void Notify() const;
 		
 		void SetSubject(Subject* subject)
 		{

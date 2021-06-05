@@ -16,7 +16,6 @@ namespace CraterEngine
 		Observer& operator=(Observer&& other) noexcept = delete;
 		#pragma endregion
 
-		virtual void OnNotify(const GameObject& object, const EventType& event) = 0;
-
+		virtual void OnNotify(const GameObject* object) = 0;
 	};
 }

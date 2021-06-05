@@ -1,13 +1,13 @@
 #pragma once
 #include "CraterEngine.h"
-
+#include "Components/ScoreComponent.h"
 class ScoreCommand final : public CraterEngine::Command
 {
 public:
-	ScoreCommand(CraterEngine::GameObject* pObject, const CraterEngine::EventType& eventType)
+	ScoreCommand(CraterEngine::GameObject* pObject, ScoreComponent::ScoreEvent scoreEvent)
 	{
 		m_pObject = pObject;
-		m_Event = eventType;
+		m_Event = scoreEvent;
 	};
 	virtual ~ScoreCommand() override
 	{
@@ -22,9 +22,10 @@ public:
 
 	virtual void Execute() override
 	{
-		m_pObject->Notify(*m_pObject, m_Event);
+		m_pObject->GetComponent<ScoreComponent>()->SetEvent(m_Event);
+		m_pObject->Notify();
 	};
 private:
 	CraterEngine::GameObject* m_pObject;
-	CraterEngine::EventType m_Event;
+	ScoreComponent::ScoreEvent m_Event;
 };

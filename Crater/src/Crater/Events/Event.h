@@ -2,7 +2,7 @@
 
 namespace CraterEngine
 {
-	enum class EventType
+	enum class EventType : int 
 	{
 		LostHealt,
 		Died,
@@ -11,5 +11,6 @@ namespace CraterEngine
 		DiscRemaining,
 		CaughtSlick,
 		CaughtSam,
+		QbertLanded,
 	};
 }

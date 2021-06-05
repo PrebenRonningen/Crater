@@ -31,7 +31,8 @@ public:
 	virtual bool Initialize() override;
 	virtual void Render() const override;
 
-
+	const glm::ivec3& GetSpawnPos() const  {return m_SpawnPos;};
+private:
 	inline float randF(float min, float max)
 	{
 		const float random = static_cast<float>( rand() ) / static_cast<float>( RAND_MAX );
@@ -39,9 +40,6 @@ public:
 		const float r = random * diff;
 		return min + r;
 	}
-
-	const glm::ivec3& GetSpawnPos() const  {return m_SpawnPos;};
-private:
 	void CalculateSpawnPos();
 	void SetupLevel();
 	int m_Height;

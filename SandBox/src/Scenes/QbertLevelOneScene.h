@@ -22,6 +22,6 @@ private:
 	float time = 0;
 	float neededTime = 1;
 
-	CraterEngine::SpriteComponent* qSprite;
+	CraterEngine::SpriteComponent* m_qSprite;
 	CraterEngine::GameObject* m_pPyramid;
 };

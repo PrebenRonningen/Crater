@@ -9,21 +9,27 @@
 #include "Services/Sound/LoggingSoundSystem.h"
 
 
-void HealthObserver::OnNotify(const CraterEngine::GameObject& object, const CraterEngine::EventType& event)
+void HealthObserver::OnNotify(const CraterEngine::GameObject* pObject)
 {
-	const HealthComponent& pHealthComp = *object.GetComponent<HealthComponent>();
-	const PlayerComponent& pPlayerComp = *object.GetComponent<PlayerComponent>();
-	switch ( event )
+	HealthComponent* pHealthComp = pObject->GetComponent<HealthComponent>();
+	if( pHealthComp->HasEvent() ) return;
+	
+	const PlayerComponent* pPlayerComp = pObject->GetComponent<PlayerComponent>();
+
+
+	switch ( pHealthComp->GetEvent() )
 	{
-		case CraterEngine::EventType::LostHealt:
-			std::cout << "Player " << (int)pPlayerComp.GetPlayerID() << " Has " << pHealthComp.GetRemainingLives() << " Lives Remaining." << std::endl;
+		case HealthComponent::HealthEvent::LostHealth:
+			std::cout << "Player " << (int) pPlayerComp->GetPlayerID() << " Has " << pHealthComp->GetRemainingLives() << " Lives Remaining." << std::endl;
 			ServiceLocator::GetSoundService().PlaySound("../Crater/3rdParty/Simple-SDL2-Audio-master/sounds/door1.wav", 50);
+
 			break;
-		case CraterEngine::EventType::Died:
-			std::cout << "Player " << (int)pPlayerComp.GetPlayerID() <<" Died.\nBig Sad!" << std::endl;
+		case HealthComponent::HealthEvent::Died:
+			std::cout << "Player " << (int) pPlayerComp->GetPlayerID() << " Died.\nBig Sad!" << std::endl;
 			ServiceLocator::GetSoundService().PlaySound("../Crater/3rdParty/Simple-SDL2-Audio-master/sounds/door2.wav", 50);
 			break;
 		default:
 			break;
 	}
+	pHealthComp->EventHandeled();
 }

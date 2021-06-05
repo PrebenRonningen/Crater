@@ -16,6 +16,6 @@ public:
 	HealthObserver& operator=(HealthObserver&& other) noexcept = delete;
 	#pragma endregion
 
-	virtual void OnNotify(const CraterEngine::GameObject& object, const CraterEngine::EventType& event) override;
+	virtual void OnNotify(const CraterEngine::GameObject* pObject) override;
 	private:
 };

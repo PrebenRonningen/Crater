@@ -42,8 +42,9 @@ namespace CraterEngine
 				comp->Initialize();
 		}
 	}
-	void GameObject::Notify(const GameObject& object, const EventType& event) const
+	void GameObject::Notify() const
 	{
-		m_pSubject->Notify(object, event);
+		m_pSubject->Notify(this);
 	}
+
 }

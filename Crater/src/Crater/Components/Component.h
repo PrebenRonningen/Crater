@@ -7,7 +7,7 @@ namespace CraterEngine
 	{
 	public:
 		Component(const GameObject* parent) 
-		: m_pParent{ parent }, m_IsInitialized{false}{};
+		: m_pParent{ parent }, m_IsInitialized{false}, m_HasEvent{false}{};
 
 		virtual ~Component() = default;
 
@@ -23,8 +23,11 @@ namespace CraterEngine
 		virtual void Render() const{};
 
 		bool IsInitialized() { return m_IsInitialized; };
-
+	
+		void EventHandeled(){m_HasEvent = false;}
+		bool HasEvent() const { return m_HasEvent; }
 	protected:
+		bool m_HasEvent;
 		bool m_IsInitialized;
 		const GameObject* m_pParent{};
 	};

@@ -38,12 +38,12 @@ namespace CraterEngine
 			m_Observers.erase(it);
 		}
 	}
-	
-	void Subject::Notify(const GameObject& object, const EventType& event)
+
+	void Subject::Notify(const GameObject* object)
 	{
 		for ( Observer* pObs : m_Observers )
 		{
-			pObs->OnNotify(object, event);
+			pObs->OnNotify(object);
 		}
 	}
 }

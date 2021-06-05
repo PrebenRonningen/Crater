@@ -6,6 +6,7 @@
 HealthComponent::HealthComponent(const CraterEngine::GameObject* parent)
 	: Component(parent)
 {
+
 }
 
 bool HealthComponent::Initialize()
@@ -29,11 +30,13 @@ void HealthComponent::LoseHealth(std::uint8_t healthLost)
 		return;
 	}
 	m_Health -= healthLost;
-	m_pParent->Notify(*m_pParent, CraterEngine::EventType::LostHealt);
+	SetEvent(HealthEvent::LostHealth);
+	m_pParent->Notify( );
 }
 
 void HealthComponent::Dead()
 {
-	m_pParent->Notify(*m_pParent, CraterEngine::EventType::Died);
+	SetEvent(HealthEvent::Died);
+	m_pParent->Notify();
 }
 	

@@ -3,6 +3,7 @@
 #include "QbertLevelOneScene.h"
 #include "Components/LevelComponent.h"
 #include "Components/QbertComponent.h"
+#include "Observers/LevelObserver.h"
 
 using namespace CraterEngine;
 
@@ -13,6 +14,8 @@ QbertLevelOneScene::~QbertLevelOneScene()
 
 QbertLevelOneScene::QbertLevelOneScene(const std::string& name)
 	: Scene(name)
+	, time{}
+	, neededTime{}
 	, m_pPyramid{nullptr}
 	, m_qSprite{nullptr}
 {
@@ -68,8 +71,11 @@ void QbertLevelOneScene::Initialize()
 		m_pPyramid->AddComponent<SpriteComponent>("Tile/Level2Cube.png", 3);
 		m_pPyramid->AddComponent<LevelComponent>(7);
 
+		// TODO: Add Level Observer for Qbert to notify that it has moved
 		RegisterComponentToRender(m_pPyramid->GetComponent<LevelComponent>());
 		AddGameObject(m_pPyramid);
+
+		AddObserver(new LevelObserver(m_pPyramid->GetComponent<LevelComponent>()));
 	}
 
 	{
@@ -77,7 +83,7 @@ void QbertLevelOneScene::Initialize()
 		qBert->AddComponent<TransformComponent>(m_pPyramid->GetComponent<LevelComponent>()->GetSpawnPos(), glm::vec3{ 0,0,0 }, glm::vec3{ 2,2,2 });
 		qBert->AddComponent<SpriteComponent>("Qbert/Qbert.png", 1, 8);
 		qBert->AddComponent<QbertComponent>();
-		qSprite = qBert->GetComponent<SpriteComponent>();
+		m_qSprite = qBert->GetComponent<SpriteComponent>();
 		RegisterComponentToRender(qBert->GetComponent<SpriteComponent>());
 		AddGameObject(qBert);
 	}
