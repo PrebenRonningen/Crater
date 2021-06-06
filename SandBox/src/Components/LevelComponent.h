@@ -1,6 +1,6 @@
 #pragma once
 #include <CraterEngine.h>
-class QbertComponent;
+#include "QbertComponent.h"
 class LevelComponent final : public CraterEngine::Component
 {
 	struct Cube
@@ -15,13 +15,17 @@ class LevelComponent final : public CraterEngine::Component
 		int stage = 0;
 		
 		static const int size = 32;
+		bool IsOccupiedByPlayer = false;
 	};
 
 public:
 	enum class LevelEvent
 	{
-		QbertLanded
-	} m_CurrentEvent;
+		None,
+		QbertLanded,
+		QbertJump
+
+	} m_CurrentEvent = LevelEvent::None;
 	LevelComponent(const CraterEngine::GameObject* parent, const int pyramidHeight = 7);
 	virtual ~LevelComponent() = default;
 #pragma region deleted
@@ -35,6 +39,13 @@ public:
 	virtual bool Initialize() override;
 	virtual void Render() const override;
 
+
+	virtual void EventHandeled() override
+	{
+		m_CurrentEvent = LevelEvent::None;
+		m_HasEvent = false;
+	};
+
 	const glm::ivec3& GetSpawnPos() const  {return m_SpawnPos;};
 	void SetEvent(const LevelEvent& levelEvent)
 	{
@@ -46,10 +57,13 @@ public:
 		return m_CurrentEvent;
 	}
 
+	bool Move(const bool isPlayer, bool& isTargetOnTile, const glm::ivec2& target);
+
 	void RegisterPlayer(QbertComponent* qbert);
 
 	void FlipCube(const glm::vec3& cubeAtPostions);
-
+	void PlayerLeftCube(const glm::vec3& PlayerAtPostions);
+	glm::ivec2 GetCubeStartPosition() const;
 private:
 	inline float randF(float min, float max)
 	{

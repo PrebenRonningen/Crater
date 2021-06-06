@@ -5,8 +5,9 @@ class MoveDownLeftCommand final : public CraterEngine::Command
 {
 public:
 	MoveDownLeftCommand(CraterEngine::GameObject* pObject)
+		: m_pObject(pObject)
 	{
-		m_pObject = pObject;
+		m_pMovementComponent = m_pObject->GetComponent<MovementComponent>();
 	};
 	virtual ~MoveDownLeftCommand() override
 	{
@@ -21,9 +22,9 @@ public:
 
 	virtual void Execute() override
 	{
-
-
+		m_pMovementComponent->MoveDownLeft();
 	};
 private:
 	CraterEngine::GameObject* m_pObject;
+	MovementComponent* m_pMovementComponent;
 };

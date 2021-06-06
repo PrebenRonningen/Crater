@@ -62,6 +62,28 @@ void LevelComponent::Render() const
 	}
 }
 
+bool LevelComponent::Move(const bool isPlayer, bool& isTargetOnTile, const glm::ivec2& target )
+{
+	if ( isPlayer )
+	{
+		auto it = std::find_if(m_Cubes.begin(), m_Cubes.end(), [target](Cube c){return c.pos == glm::ivec3(target.x, target.y, 0);});
+		if ( it != m_Cubes.end() )
+		{
+			
+			isTargetOnTile = true;
+			return !it->IsOccupiedByPlayer;
+		}
+		else
+		{
+			isTargetOnTile = false;
+		}
+
+		return true;
+	}
+
+	return false;
+}
+
 void LevelComponent::RegisterPlayer(QbertComponent* qbert)
 {
 	m_Players.push_back(qbert);
@@ -69,15 +91,17 @@ void LevelComponent::RegisterPlayer(QbertComponent* qbert)
 
 void LevelComponent::FlipCube(const glm::vec3& cubeAtPostions)
 {
-	glm::ivec3 cubePos = cubeAtPostions - m_pParent->GetComponent<CraterEngine::TransformComponent>()->GetPosition();
-	glm::ivec2 qBertSpriteSize{ 16, 16 };
-	cubePos.x -= qBertSpriteSize.x;
-	cubePos.y += qBertSpriteSize.y;
+	
+	glm::ivec3 cubePos = cubeAtPostions;
+	//glm::ivec2 qBertSpriteSize{ 16, 16 };
+	//cubePos.x -= qBertSpriteSize.x;
+	//cubePos.y += qBertSpriteSize.y;
 
 
 	auto cube = std::find_if(m_Cubes.begin(), m_Cubes.end(), [cubePos](Cube c){ return cubePos == c.pos;});
 	if ( cube != m_Cubes.end() )
 	{
+		cube->IsOccupiedByPlayer = true;
 		switch ( cube->state )
 		{
 			case Cube::SwitchState::Permanent:
@@ -97,7 +121,26 @@ void LevelComponent::FlipCube(const glm::vec3& cubeAtPostions)
 			default:
 				break;
 		}
+
 	}
+}
+
+void LevelComponent::PlayerLeftCube(const glm::vec3& PlayerAtPostions)
+{
+	auto cube = std::find_if(m_Cubes.begin(), m_Cubes.end(), [PlayerAtPostions](Cube c) 
+							{
+								 return glm::ivec3(PlayerAtPostions) == c.pos;
+							 });
+	if ( cube != m_Cubes.end() )
+	{
+		cube->IsOccupiedByPlayer = false;
+	}
+}
+
+glm::ivec2 LevelComponent::GetCubeStartPosition() const
+{
+	glm::ivec2 topCubePos = glm::ivec2(m_Cubes.back().pos.x, m_Cubes.back().pos.y);
+	return topCubePos;
 }
 
 void LevelComponent::CalculateSpawnPos()

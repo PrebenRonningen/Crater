@@ -18,10 +18,6 @@ public:
 	virtual void Render() const;
 	virtual void Initialize();
 private:
-
-	float time;
-	float neededTime;
-
 	CraterEngine::SpriteComponent* m_qSprite;
 	CraterEngine::GameObject* m_pPyramid;
 };

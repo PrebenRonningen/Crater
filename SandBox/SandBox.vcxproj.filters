@@ -131,7 +131,7 @@
     <ClInclude Include="src\Commands\MoveDownRightCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Commands\MobeDownLeftCommand.h">
+    <ClInclude Include="src\Commands\MoveDownLeftCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

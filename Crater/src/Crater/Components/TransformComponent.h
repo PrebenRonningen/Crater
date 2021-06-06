@@ -38,6 +38,20 @@ namespace CraterEngine
 			return m_Scale;
 		}
 
+		void MovePosition(float x, float y, float z)
+		{
+			m_Position.x += x;
+			m_Position.y += y;
+			m_Position.z += z;
+		}
+		void MovePosition(glm::vec3 moveAmount)
+		{
+			m_Position += moveAmount;
+		}
+		void MovePosition(glm::vec2 moveAmount)
+		{
+			MovePosition({moveAmount.x, moveAmount.y, 0});
+		}
 
 		void SetPosition(float x, float y, float z);
 		void SetPosition(const glm::vec3& position);

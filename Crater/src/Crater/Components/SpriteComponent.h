@@ -21,7 +21,9 @@ namespace CraterEngine
 #pragma endregion
 
 		virtual bool Initialize() override;
-		virtual void Update( const float ) override{};
+		virtual void Update( const float ) override{
+			UpdateDestination();
+		};
 		virtual void Render() const override;
 
 		void SetTexture(const std::string& filePath);

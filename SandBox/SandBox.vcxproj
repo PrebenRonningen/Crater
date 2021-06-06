@@ -242,7 +242,7 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(Ou
     <ClCompile Include="src\App\Sandbox.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Commands\MobeDownLeftCommand.h" />
+    <ClInclude Include="src\Commands\MoveDownLeftCommand.h" />
     <ClInclude Include="src\Commands\MoveDownRightCommand.h" />
     <ClInclude Include="src\Commands\MoveUpLeftCommand.h" />
     <ClInclude Include="src\Commands\MoveUpRightCommand.h" />

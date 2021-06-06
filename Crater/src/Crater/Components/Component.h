@@ -23,7 +23,7 @@ namespace CraterEngine
 
 		bool IsInitialized() { return m_IsInitialized; };
 	
-		void EventHandeled(){m_HasEvent = false;}
+		virtual void EventHandeled(){m_HasEvent = false;};
 		bool HasEvent() const { return m_HasEvent; }
 		void NotifyParrent() const;
 	protected:

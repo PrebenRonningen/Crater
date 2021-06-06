@@ -3,7 +3,12 @@
 #include "QbertLevelOneScene.h"
 #include "Components/LevelComponent.h"
 #include "Components/QbertComponent.h"
+#include "Components/MovementComponent.h"
 #include "Observers/LevelObserver.h"
+#include "Commands/MoveUpLeftCommand.h"
+#include "Commands/MoveUpRightCommand.h"
+#include "Commands/MoveDownLeftCommand.h"
+#include "Commands/MoveDownRightCommand.h"
 
 using namespace CraterEngine;
 
@@ -14,8 +19,7 @@ QbertLevelOneScene::~QbertLevelOneScene()
 
 QbertLevelOneScene::QbertLevelOneScene(const std::string& name)
 	: Scene(name)
-	, time{0}
-	, neededTime{1}
+
 	, m_pPyramid{nullptr}
 	, m_qSprite{nullptr}
 {
@@ -27,19 +31,6 @@ void QbertLevelOneScene::Update(const float dt)
 	{
 		pO->Update(dt);
 	}
-	time += dt;
-	if ( time > neededTime )
-	{
-		time = 0;
-		int col = 0;
-		int row = 0;
-		m_qSprite->GetRowAndCol(row, col);
-		if(col == 0 )
-			m_qSprite->SetTextureSource(row, 1);
-		else
-			m_qSprite->SetTextureSource(row, 0);
-	}
-
 }
 
 void QbertLevelOneScene::Render() const
@@ -82,7 +73,13 @@ void QbertLevelOneScene::Initialize()
 		qBert->AddComponent<TransformComponent>(m_pPyramid->GetComponent<LevelComponent>()->GetSpawnPos(), glm::vec3{ 0,0,0 }, glm::vec3{ 2,2,2 });
 		qBert->AddComponent<SpriteComponent>("Qbert/Qbert.png", 1, 8);
 		qBert->AddComponent<QbertComponent>(m_pPyramid->GetComponent<LevelComponent>());
+		qBert->AddComponent<MovementComponent>(m_pPyramid->GetComponent<LevelComponent>());
 		m_qSprite = qBert->GetComponent<SpriteComponent>();
+		CraterEngine::InputManager::GetInstance().AssignCommand(std::tuple(0, CraterEngine::ControllerButton::ButtonX, CraterEngine::ButtonState::ButtonUp), new MoveUpLeftCommand(qBert));
+		CraterEngine::InputManager::GetInstance().AssignCommand(std::tuple(0, CraterEngine::ControllerButton::ButtonY, CraterEngine::ButtonState::ButtonUp), new MoveUpRightCommand(qBert));
+		CraterEngine::InputManager::GetInstance().AssignCommand(std::tuple(0, CraterEngine::ControllerButton::ButtonA, CraterEngine::ButtonState::ButtonUp), new MoveDownLeftCommand(qBert));
+		CraterEngine::InputManager::GetInstance().AssignCommand(std::tuple(0, CraterEngine::ControllerButton::ButtonB, CraterEngine::ButtonState::ButtonUp), new MoveDownRightCommand(qBert));
+
 		RegisterComponentToRender(qBert->GetComponent<SpriteComponent>());
 		m_pPyramid->GetComponent<LevelComponent>()->RegisterPlayer(qBert->GetComponent<QbertComponent>());
 		AddGameObject(qBert);

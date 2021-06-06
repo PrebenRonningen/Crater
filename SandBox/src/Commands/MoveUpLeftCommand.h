@@ -1,12 +1,14 @@
 #pragma once
 #include <CraterEngine.h> 
 #include "Components/MovementComponent.h"
+
 class MoveUpLeftCommand final : public CraterEngine::Command
 {
 public:
 	MoveUpLeftCommand(CraterEngine::GameObject* pObject)
+		: m_pObject(pObject)
 	{
-		m_pObject = pObject;
+		m_pMovementComponent = m_pObject->GetComponent<MovementComponent>();
 	};
 	virtual ~MoveUpLeftCommand() override
 	{
@@ -21,9 +23,9 @@ public:
 
 	virtual void Execute() override
 	{
-
-
+		m_pMovementComponent->MoveUpLeft();
 	};
 private:
 	CraterEngine::GameObject* m_pObject;
+	MovementComponent* m_pMovementComponent;
 };

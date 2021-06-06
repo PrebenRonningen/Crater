@@ -14,11 +14,14 @@ public:
 	QbertComponent& operator=(QbertComponent&& other) = delete;
 #pragma endregion
 
-	virtual void Update(const float dt) override{dt;};
+	virtual void Update(const float dt) override;
 	virtual bool Initialize() override;
 	virtual void Render() const override{};
 
 private:
+	float m_Time;
+	float m_NeededTime;
 	LevelComponent* m_LevelComponent;
+	CraterEngine::SpriteComponent* m_pSprite;
 };
 
