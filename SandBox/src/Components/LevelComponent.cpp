@@ -91,8 +91,8 @@ void LevelComponent::FlipCube(const glm::vec3& cubeAtPostions)
 			case Cube::SwitchState::MultiStage:
 				if ( cube->stage <= 1 )
 					cube->stage++;
-				else
-					cube->stage--;
+				//else
+				//	cube->stage--;
 				break;
 			default:
 				break;

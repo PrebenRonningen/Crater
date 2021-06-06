@@ -218,6 +218,7 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(Ou
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Components\MovementComponent.cpp" />
     <ClCompile Include="src\Observers\LevelObserver.cpp" />
     <ClCompile Include="src\Components\QbertComponent.cpp" />
     <ClCompile Include="src\Components\LevelComponent.cpp" />
@@ -241,6 +242,11 @@ xcopy "$(SolutionDir)Crater\3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(Ou
     <ClCompile Include="src\App\Sandbox.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Commands\MobeDownLeftCommand.h" />
+    <ClInclude Include="src\Commands\MoveDownRightCommand.h" />
+    <ClInclude Include="src\Commands\MoveUpLeftCommand.h" />
+    <ClInclude Include="src\Commands\MoveUpRightCommand.h" />
+    <ClInclude Include="src\Components\MovementComponent.h" />
     <ClInclude Include="src\Observers\LevelObserver.h" />
     <ClInclude Include="src\Components\QbertComponent.h" />
     <ClInclude Include="src\Components\LevelComponent.h" />

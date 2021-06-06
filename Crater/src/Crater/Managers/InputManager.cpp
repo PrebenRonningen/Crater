@@ -88,6 +88,7 @@ namespace CraterEngine
 			}
 		}
 		return true;
+		SDL_GetKeyboardState(NULL);
 	}
 
 	void InputManager::HandleControllerInput()
