@@ -2,6 +2,8 @@
 #include "LevelComponent.h"
 #include <ctime>
 #include <random>
+#include "ScoreComponent.h"
+#include "MovementComponent.h"
 
 LevelComponent::LevelComponent(const CraterEngine::GameObject* parent, const int pyramidHeight)
 	:Component(parent)
@@ -52,13 +54,13 @@ bool LevelComponent::Initialize()
 
 void LevelComponent::Render() const
 {
-	auto* k = m_pParent->GetComponent<CraterEngine::SpriteComponent>();
+	CraterEngine::SpriteComponent* pSprite = m_pParent->GetComponent<CraterEngine::SpriteComponent>();
 
 	for ( Cube c :  m_Cubes)
 	{
-		k->SetDestination(c.pos.x, c.pos.y);
-		k->SetTextureSource(c.stage, 0);
-		k->Render();
+		pSprite->SetDestination(c.pos.x, c.pos.y);
+		pSprite->SetTextureSource(c.stage, 0);
+		pSprite->Render();
 	}
 }
 
@@ -84,7 +86,7 @@ bool LevelComponent::Move(const bool isPlayer, bool& isTargetOnTile, const glm::
 	return false;
 }
 
-void LevelComponent::RegisterPlayer(QbertComponent* qbert)
+void LevelComponent::RegisterPlayer(CraterEngine::GameObject* qbert)
 {
 	m_Players.push_back(qbert);
 }
@@ -105,8 +107,20 @@ void LevelComponent::FlipCube(const glm::vec3& cubeAtPostions)
 		switch ( cube->state )
 		{
 			case Cube::SwitchState::Permanent:
-				if(cube->stage == 0 )
+				if ( cube->stage == 0 )
+				{
 					cube->stage++;
+					for ( auto player : m_Players )
+					{
+						auto pos = player->GetComponent<MovementComponent>()->GetCurrentPosition();
+						if ( cube->pos == glm::ivec3(pos) )
+						{
+							player->GetComponent<ScoreComponent>()->SetEvent(ScoreComponent::ScoreEvent::ColorChange);
+							player->Notify();
+							break;
+						}
+					}
+				}
 				break;
 			case Cube::SwitchState::Reverting:
 				if ( cube->stage != 0 )
@@ -121,7 +135,11 @@ void LevelComponent::FlipCube(const glm::vec3& cubeAtPostions)
 			default:
 				break;
 		}
-
+	}
+	if ( LevelCleared() )
+	{
+		SetEvent(LevelEvent::LeveleCleared);
+		m_pParent->Notify();
 	}
 }
 
@@ -141,6 +159,18 @@ glm::ivec2 LevelComponent::GetCubeStartPosition() const
 {
 	glm::ivec2 topCubePos = glm::ivec2(m_Cubes.back().pos.x, m_Cubes.back().pos.y);
 	return topCubePos;
+}
+
+bool LevelComponent::LevelCleared() const
+{
+	auto cube = std::find_if(m_Cubes.begin(), m_Cubes.end(), [](Cube c)
+							 {
+								 return c.stage == 0;
+							 });
+	 if(cube != m_Cubes.end() )
+		return false;
+	else
+		return true;
 }
 
 void LevelComponent::CalculateSpawnPos()

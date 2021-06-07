@@ -5,8 +5,9 @@
 
 HealthComponent::HealthComponent(const CraterEngine::GameObject* parent)
 	: Component(parent)
+	, m_MaxHealth{3}
 {
-
+	m_Health = m_MaxHealth;
 }
 
 bool HealthComponent::Initialize()
@@ -30,8 +31,8 @@ void HealthComponent::LoseHealth(std::uint8_t healthLost)
 		return;
 	}
 	m_Health -= healthLost;
-	SetEvent(HealthEvent::LostHealth);
-	m_pParent->Notify( );
+	//SetEvent(HealthEvent::LostHealth);
+	//m_pParent->Notify( );
 }
 
 void HealthComponent::Dead()

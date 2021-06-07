@@ -16,9 +16,12 @@ public:
 #pragma endregion
 
 	virtual void Update(const float dt) override;
-	virtual bool Initialize() override{ return true; };
+	virtual void Render() const ;
+	virtual bool Initialize() override;
 
 private:
 	HealthComponent* m_HealthComponent;
 	int m_PreviousHealth = -1;
+	CraterEngine::SpriteComponent* m_pSprite;
+	glm::vec3 m_Position;
 };

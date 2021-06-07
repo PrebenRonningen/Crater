@@ -5,13 +5,16 @@
 #include "RenderableComponent.h"
 namespace CraterEngine
 {
-	TextComponent::TextComponent(const GameObject* parent, const std::string& text, const SDL_Color& color)
+	TextComponent::TextComponent(const GameObject* parent, const std::string& text, const SDL_Color& color, int fontSize)
 		:Component(parent)
 		, m_pTexture2D{nullptr}
 		, m_TextString{text}
 		, m_pText{nullptr}
+		, m_pFont{nullptr}
 		, m_Color{ color }
+		, m_FontSize{fontSize}
 	{		
+		m_pFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", m_FontSize);
 		if(!m_TextString.empty() )
 			SetTextAndColor(m_TextString, m_Color);
 	}
@@ -65,7 +68,7 @@ namespace CraterEngine
 			m_TextString = " ";
 		if ( !m_pText )
 		{
-			m_pText = new Text(m_TextString, ResourceManager::GetInstance().LoadFont("Lingua.otf", 30));
+			m_pText = new Text(m_TextString, m_pFont);
 		}
 
 		m_pText->SetTextAndColor(m_TextString, m_Color);
@@ -83,7 +86,7 @@ namespace CraterEngine
 		}
 		else
 		{
-			m_pText = new Text(m_TextString, ResourceManager::GetInstance().LoadFont("Lingua.otf", 30));
+			m_pText = new Text(m_TextString, m_pFont);
 			m_pText->SetTextAndColor(m_TextString, m_Color);
 		}
 		m_pText->Update();
@@ -98,7 +101,7 @@ namespace CraterEngine
 			m_pText->SetText(m_TextString);		}
 		else
 		{
-			m_pText = new Text( m_TextString, ResourceManager::GetInstance().LoadFont("Lingua.otf", 30) );
+			m_pText = new Text( m_TextString, m_pFont);
 			m_pText->SetTextAndColor(m_TextString, m_Color);
 		}
 		m_pText->Update();

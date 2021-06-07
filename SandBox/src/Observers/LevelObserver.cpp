@@ -39,6 +39,10 @@ void LevelObserver::OnNotify(const CraterEngine::GameObject* pObject)
 		case LevelComponent::LevelEvent::QbertJump:
 			m_Level->PlayerLeftCube(pObject->GetComponent<MovementComponent>()->GetCurrentPosition());
 		break;
+		case LevelComponent::LevelEvent::LeveleCleared:
+		std::cout << "WIN\n";
+			// VICTORY
+		break;
 		default:
 			break;
 	}

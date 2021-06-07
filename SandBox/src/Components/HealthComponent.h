@@ -7,9 +7,10 @@ class HealthComponent final : public CraterEngine::Component
 public:
 	enum class HealthEvent
 	{
+		None,
 		LostHealth,
 		Died
-	} m_CurrentEvent;
+	} m_CurrentEvent = HealthEvent::None;
 
 
 	HealthComponent(const CraterEngine::GameObject* parent);
@@ -41,7 +42,7 @@ public:
 	}
 
 private:
-	std::uint8_t m_MaxHealth = 3;
-	std::uint8_t m_Health = m_MaxHealth;
+	std::uint8_t m_MaxHealth ;
+	std::uint8_t m_Health;
 	bool m_IsAlive = true;
 };

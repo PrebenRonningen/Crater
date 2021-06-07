@@ -33,7 +33,7 @@ public:
 		None,
 		QbertJumpUp,
 		QbertJumpDown,
-		QbertLanded,
+		QbertLanded
 	} m_CurrentEvent = MoveEvent::None;
 
 	void SetEvent(const MoveEvent& moveEvent)
@@ -57,7 +57,9 @@ private:
 		Idle,
 		InTransit,
 		Landed,
-		OffMap
+		OffMap,
+		Respawning,
+		Dead
 
 	}m_MoveState = MoveState::Idle;
 

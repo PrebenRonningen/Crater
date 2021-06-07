@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "Crater/Objects/Text.h"
+#include "Crater/Objects/Font.h"
 
 namespace CraterEngine
 {
@@ -8,7 +9,7 @@ namespace CraterEngine
 	class TextComponent final : public Component
 	{
 	public:
-		TextComponent(const GameObject* parent, const std::string& text = "", const SDL_Color& color = { 255, 255, 255 });
+		TextComponent(const GameObject* parent, const std::string& text = "", const SDL_Color& color = { 255, 255, 255 }, int fontSize = 30);
 		virtual ~TextComponent();
 
 #pragma region deleted
@@ -39,6 +40,8 @@ namespace CraterEngine
 		std::string m_TextString;
 		TextureData m_TextureInfo;
 		Text* m_pText;
+		Font* m_pFont;
+		int m_FontSize;
 		SDL_Color m_Color;
 	};
 }

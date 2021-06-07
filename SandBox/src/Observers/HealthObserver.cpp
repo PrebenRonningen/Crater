@@ -11,25 +11,23 @@
 
 void HealthObserver::OnNotify(const CraterEngine::GameObject* pObject)
 {
+	if( !pObject->HasComponent<HealthComponent>() ) return;
+
 	HealthComponent* pHealthComp = pObject->GetComponent<HealthComponent>();
 	if( !pHealthComp->HasEvent() ) return;
 	
-	const PlayerComponent* pPlayerComp = pObject->GetComponent<PlayerComponent>();
-
 
 	switch ( pHealthComp->GetEvent() )
 	{
 		case HealthComponent::HealthEvent::LostHealth:
-			std::cout << "Player " << (int) pPlayerComp->GetPlayerID() << " Has " << pHealthComp->GetRemainingLives() << " Lives Remaining." << std::endl;
-			ServiceLocator::GetSoundService().PlaySound("../Crater/3rdParty/Simple-SDL2-Audio-master/sounds/door1.wav", 50);
-
+			pHealthComp->LoseHealth(1);
 			break;
 		case HealthComponent::HealthEvent::Died:
-			std::cout << "Player " << (int) pPlayerComp->GetPlayerID() << " Died.\nBig Sad!" << std::endl;
-			ServiceLocator::GetSoundService().PlaySound("../Crater/3rdParty/Simple-SDL2-Audio-master/sounds/door2.wav", 50);
-			break;
+			std::cout << "Dead\n";
+		break;
 		default:
 			break;
 	}
+
 	pHealthComp->EventHandeled();
 }

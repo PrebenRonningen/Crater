@@ -23,7 +23,8 @@ public:
 	{
 		None,
 		QbertLanded,
-		QbertJump
+		QbertJump,
+		LeveleCleared
 
 	} m_CurrentEvent = LevelEvent::None;
 	LevelComponent(const CraterEngine::GameObject* parent, const int pyramidHeight = 7);
@@ -59,12 +60,13 @@ public:
 
 	bool Move(const bool isPlayer, bool& isTargetOnTile, const glm::ivec2& target);
 
-	void RegisterPlayer(QbertComponent* qbert);
+	void RegisterPlayer(CraterEngine::GameObject* qbert);
 
 	void FlipCube(const glm::vec3& cubeAtPostions);
 	void PlayerLeftCube(const glm::vec3& PlayerAtPostions);
 	glm::ivec2 GetCubeStartPosition() const;
 private:
+	bool LevelCleared() const;
 	inline float randF(float min, float max)
 	{
 		const float random = static_cast<float>( rand() ) / static_cast<float>( RAND_MAX );
@@ -80,6 +82,6 @@ private:
 	std::vector<Cube> m_Cubes;
 	std::vector<float> m_AccumulatedTime;
 	std::vector<float> m_NeededTime;
-	std::vector<QbertComponent*> m_Players;
+	std::vector<CraterEngine::GameObject*> m_Players;
 };
 

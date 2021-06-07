@@ -1,6 +1,7 @@
 #include "SandBoxPCH.h"
 #include "MovementComponent.h"
 #include "LevelComponent.h"
+#include "HealthComponent.h"
 
 MovementComponent::MovementComponent(const CraterEngine::GameObject* parent, LevelComponent* levelComponent)
 	:Component(parent)
@@ -13,28 +14,21 @@ MovementComponent::MovementComponent(const CraterEngine::GameObject* parent, Lev
 	, m_IsPlayer{false}
 	, m_Speed{3.f}
 	, m_IsTargetOnTile{true}
-	, m_TransformTarget{} 
+	, m_TransformTarget{}
 {
 	
 }
 
 void MovementComponent::Update(const float dt)
 {
-	dt;
-	if ( m_MoveState == MoveState::Idle )
-	{
-		//m_MoveState = MoveState::OffMap;
-	}
-	else
+	if ( m_MoveState != MoveState::Idle )
 	{
 		glm::vec2 transit{};
 		glm::vec3 pos{};
 		glm::vec2 dir{};
 		switch ( m_MoveState )
 		{
-			case MovementComponent::Idle:
-				break;
-			case MovementComponent::InTransit:
+			case MovementComponent::MoveState::InTransit:
 					transit = m_TargetPosition - m_StartingPosition;
 					m_CurrentPosition += transit * dt * m_Speed;
 					dir = glm::vec2(m_TargetPosition) - m_CurrentPosition;
@@ -44,9 +38,8 @@ void MovementComponent::Update(const float dt)
 					{
 						m_MoveState = MoveState::Landed;
 					}
-					m_pParent->GetComponent<CraterEngine::SpriteComponent>()->UpdateDestination();
 				break;
-			case MovementComponent::Landed:
+			case MovementComponent::MoveState::Landed:
 				m_CurrentPosition = m_StartingPosition = m_TargetPosition;
 				m_TransformComp->SetPosition(m_TransformTarget);
 				if ( m_IsPlayer )
@@ -61,12 +54,44 @@ void MovementComponent::Update(const float dt)
 					}
 				}
 				break;
-			case MovementComponent::OffMap:
+			case MovementComponent::MoveState::OffMap:
 				//fall and die
 					std::cout << "FALLING\n";
 					m_TransformComp->MovePosition(0, m_Distance.y * dt * m_Speed, 0);
-
+					m_Speed = 12.f;
+					if ( m_IsPlayer )
+					{
+						if ( m_TransformComp->GetPosition().y > 480 )// 480 == window height
+						{
+							if( m_pParent->GetComponent<HealthComponent>()->GetRemainingLives() > 0 )
+							{
+								m_Speed = 3.f;
+								m_StartingPosition = m_CurrentPosition = m_TargetPosition = m_LevelComponent->GetCubeStartPosition();
+								float xPos = float(m_LevelComponent->GetSpawnPos().x);
+								m_TransformComp->SetPosition(xPos, 0, 0);
+								m_pParent->GetComponent<HealthComponent>()->SetEvent(HealthComponent::HealthEvent::LostHealth);
+								m_pParent->Notify();
+								m_MoveState = MoveState::Respawning;
+							}
+							else
+							{
+								m_MoveState = MoveState::Dead;
+							}
+						}
+					}
 				break;
+			case MovementComponent::MoveState::Respawning:
+				m_TransformComp->MovePosition(0, m_Distance.y * dt * m_Speed, 0);
+				if ( m_TransformComp->GetPosition().y >= m_LevelComponent->GetSpawnPos().y )
+				{
+					m_TransformComp->SetPosition(m_LevelComponent->GetSpawnPos());
+					m_MoveState = MoveState::Idle;
+					m_CanMove = true;
+				}
+			break;
+			case MovementComponent::MoveState::Dead:
+			break;
+
 			default:
 				break;
 		}
@@ -79,8 +104,8 @@ bool MovementComponent::Initialize()
 	auto startPosition = m_LevelComponent->GetCubeStartPosition();
 	auto scale = m_TransformComp->GetScale();
 	m_StartingPosition = m_CurrentPosition = startPosition;
-	m_Distance.x =int( m_Distance.x * scale.x);
-	m_Distance.y =int( m_Distance.y * scale.y);
+	m_Distance.x = int( m_Distance.x * scale.x);
+	m_Distance.y = int( m_Distance.y * scale.y);
 	m_IsPlayer = m_pParent->HasComponent<QbertComponent>();
 	return true;
 }
@@ -105,7 +130,6 @@ void MovementComponent::MoveUpLeft()
 			pSprite->SetTextureSource(rowCol.x, 7);
 		else
 			pSprite->SetTextureSource(rowCol.x, 6);
-
 	}
 }
 
