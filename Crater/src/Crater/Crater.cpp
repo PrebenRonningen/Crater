@@ -77,8 +77,9 @@ namespace CraterEngine
 		ServiceLocator::RegisterSoundSystem(new LoggingSoundSystem(new SimpleSDL2AudioMaster()));
 
 		auto& soundService = ServiceLocator::GetSoundService();
+		soundService;
 		//
-		soundService.AddAudio("../Crater/3rdParty/Simple-SDL2-Audio-master/sounds/door2.wav");
+		//soundService.AddAudio("../Crater/3rdParty/Simple-SDL2-Audio-master/sounds/door2.wav");
 		//size_t soundId = soundService.AddAudio( "../Crater/3rdParty/Simple-SDL2-Audio-master/sounds/door1.wav" );
 		//soundService.PlaySound(soundId, SDL_MIX_MAXVOLUME / 4);
 		//soundService.PlayMusic("../Crater/3rdParty/Simple-SDL2-Audio-master/music/road.wav", SDL_MIX_MAXVOLUME / 10);

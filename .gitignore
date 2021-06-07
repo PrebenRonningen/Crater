@@ -13,7 +13,7 @@
 
 # Compiled Dynamic libraries
 *.so
-
+*.dylib
 
 # Fortran module files
 *.mod
@@ -34,7 +34,10 @@
 *.user
 
 #folders
+--force Crater/3rdParty
 build/
 .vs/
 bin/
 bin-int/
+
+
