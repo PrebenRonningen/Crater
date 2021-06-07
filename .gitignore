@@ -34,7 +34,6 @@
 *.user
 
 #folders
---force Crater/3rdParty
 build/
 .vs/
 bin/
